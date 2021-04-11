@@ -11,7 +11,7 @@ function App() {
   const [sipAmount, setSipAmount] = useState();
   const [period, setPeriod] = useState();
   const [rateOfReturn, setRateOfReturn] = useState();
-  const [meta, setMeta] = useState({});
+  const [meta, setMeta] = useState({investmentAmount: 0, interestAmount: 0, finalBalance: 0});
   const [data, setData] = useState([]);
 
   function calculate() {
@@ -69,7 +69,7 @@ function App() {
                 <DataOverview meta={meta} />
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4" style={{margin: 'auto 0', paddingTop: '5rem'}}>
               <form>
                 <div className="form-group">
                   {/* <label>How much do you want to invest monthly?</label> */}
@@ -78,7 +78,7 @@ function App() {
                 <div className="form-group">
                   {/* <label>Investment Period</label> */}
                   <div className="input-group mb-3">
-                    <input type="number" className="form-control" value={period} onChange={e => setPeriod(e.target.value)} placeholder="Investment Period" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                    <input type="number" max="75" className="form-control" value={period} onChange={e => setPeriod(e.target.value)} placeholder="Investment Period" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
                       <span className="input-group-text" id="basic-addon2">Years</span>
                     </div>
@@ -87,7 +87,7 @@ function App() {
                 <div className="form-group">
                   {/* <label>Expected Annual Returns (%)</label> */}
                   <div className="input-group mb-3">
-                    <input type="number" value={rateOfReturn} onChange={e => setRateOfReturn(e.target.value)} className="form-control" placeholder="Expected Annual Returns (%)" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                    <input type="number" max="100" value={rateOfReturn} onChange={e => setRateOfReturn(e.target.value)} className="form-control" placeholder="Expected Annual Returns (%)" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
                       <span className="input-group-text" id="basic-addon2">%</span>
                     </div>
@@ -105,7 +105,7 @@ function App() {
         <div className="col-md-4">
         </div>
         <div className="col-md-8">
-          { data && <Breakup data={data} meta={meta}/> }
+          { data && <Breakup data={data} /> }
         </div>
       </div>
     </div>
