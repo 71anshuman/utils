@@ -17,7 +17,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp CNAME ./build",
     "deploy": "gh-pages -d build",
     "analyze": "BUNDLE_ANALYZE=true npm run build",
     "lint": "eslint ./src --ext .js,.jsx",
