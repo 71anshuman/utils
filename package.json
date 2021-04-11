@@ -2,7 +2,7 @@
   "name": "tools-reactjs",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://71anshuman.github.io/tools-reactjs",
+  "homepage": "https://71anshuman.github.io/utils",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
@@ -18,9 +18,12 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build",
+    "deploy": "NODE_DEBUG=gh-pages gh-pages -d dist",
+    "analyze": "BUNDLE_ANALYZE=true npm run build",
+    "lint": "eslint ./src --ext .js,.jsx",
+    "lint:fix": "eslint ./src --ext .js,.jsx --fix",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "webpack --progress --profile",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
