@@ -7,9 +7,9 @@ import Breakup from './components/Breakup';
 let finance = new Finance();
 
 function App() {
-  const [sipAmount, setSipAmount] = useState(0);
-  const [period, setPeriod] = useState(0);
-  const [rateOfReturn, setRateOfReturn] = useState(0);
+  const [sipAmount, setSipAmount] = useState();
+  const [period, setPeriod] = useState();
+  const [rateOfReturn, setRateOfReturn] = useState();
   const [meta, setMeta] = useState({});
   const [data, setData] = useState([]);
 
@@ -38,14 +38,12 @@ function App() {
     }
     setData(transactions);
     const invested = period * 12 * sipAmount;
-    const CAGR = finance.CAGR(invested, investmentAmount, period);
     setMeta({
-      investmentAmount: invested,
+      investmentAmount: invested ?? 0,
       period,
       rateOfReturn,
       finalBalance: investmentAmount,
-      interestAmount: investmentAmount - invested,
-      CAGR: CAGR
+      interestAmount: parseInt(investmentAmount - invested),
     });
 
   }
@@ -57,11 +55,11 @@ function App() {
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
           <div className="row">
-            <div className="col-md-7">
+            <div className="col-md-8">
               <h1 className="display-4">SIP Calculator</h1>
               <p className="lead">SIP is the best way to accumulate long term wealth.</p>
             </div>
-            <div className="col-md-5">
+            <div className="col-md-4">
               <form>
                 <div className="form-group">
                   {/* <label>How much do you want to invest monthly?</label> */}
@@ -124,7 +122,7 @@ function App() {
           </form>
         </div>
         <div className="col-md-8">
-          <Breakup data={data} meta={meta}/>
+          { data && <Breakup data={data} meta={meta}/> }
         </div>
       </div>
     </div>
