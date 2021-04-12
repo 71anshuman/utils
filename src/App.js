@@ -44,11 +44,13 @@ function App() {
         balanceAtEndOfMonth: Math.round(balanceAtEndOfMonth),
         totalInterest: interest
       });
+
       investmentAmount = balanceAtEndOfMonth;
       if (mon === 0) {
         year++;
       }
     }
+
     setData(transactions);
     const invested = period * 12 * sipAmount;
     setMeta({
