@@ -10,7 +10,13 @@ import Input from './components/common/Input';
 let finance = new Finance();
 
 function App() {
-  const [{sipAmount, period, rateOfReturn}, handleChange] = useFinInput({sipAmount: 0, rateOfReturn: 0, period: 0});
+  const [{sipAmount, period, rateOfReturn}, handleChange] = useFinInput(
+    {
+      sipAmount: '',
+      rateOfReturn: '',
+      period: '',
+    }
+  );
   const [meta, setMeta] = useState({investmentAmount: 0, interestAmount: 0, finalBalance: 0});
   const [data, setData] = useState([]);
 
@@ -28,7 +34,7 @@ function App() {
       balanceAtEndOfMonth = totalAmountThisMonth * (1 + (rateOfReturn/100) / 12);
       const thisMonthInterest = Math.round(finance.CI(rateOfReturn/12, 1, totalAmountThisMonth, 1) - totalAmountThisMonth);
       interest += thisMonthInterest;
-      console.log(investmentAmount);
+
       transactions.push({
         year: year,
         month: month,
