@@ -3,6 +3,7 @@ import { Finance } from 'financejs';
 
 import Header from './components/Header';
 import Breakup from './components/Breakup';
+import InvestedVsGainChart from './components/InvestedVsGainChart';
 import DataOverview from './components/DataOverview';
 import { useFinInput } from './hooks/useFinInput';
 import Input from './components/common/Input';
@@ -111,6 +112,7 @@ function App() {
       </div>
       <div className="row">
         <div className="col-md-4">
+          <InvestedVsGainChart  meta={meta}/>
         </div>
         <div className="col-md-8">
           { data && <Breakup data={data} /> }
