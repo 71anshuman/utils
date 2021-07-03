@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Finance } from 'financejs';
 
 import Header from './components/Header';
-import Breakup from './components/Breakup';
-import InvestedVsGainChart from './components/InvestedVsGainChart';
-import DataOverview from './components/DataOverview';
+import Breakup from './components/sip-calculator/Breakup';
+import InvestedVsGainChart from './components/sip-calculator/InvestedVsGainChart';
+import DataOverview from './components/sip-calculator/DataOverview';
 import { useFinInput } from './hooks/useFinInput';
 import Input from './components/common/Input';
 
@@ -18,6 +18,7 @@ function App() {
       period: '',
     }
   );
+
   const [meta, setMeta] = useState({investmentAmount: 0, interestAmount: 0, finalBalance: 0});
   const [data, setData] = useState([]);
 

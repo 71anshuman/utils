@@ -16,10 +16,15 @@ export default function InvestedVsGainChart(props) {
                         ['Invested', investmentAmount],
                         ['Gain', interestAmount],
                     ]}
-                    options={{
-                        title: 'Gain VS Invested',
-                        is3D: true,
-                    }}
+                    options={
+                        {
+                            title: 'Gain VS Invested',
+                            is3D: true,
+                            titleTextStyle: {
+                                fontSize: '24px',
+                            }
+                        }
+                    }
                     rootProps={{ 'data-testid': '2' }}
                 />
             }

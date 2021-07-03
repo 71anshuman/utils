@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { numberFormat } from '../helpers/helpers';
+import { numberFormat } from '../../helpers/helpers'
 
 export default function Breakup(props) {
     const { data } = props;

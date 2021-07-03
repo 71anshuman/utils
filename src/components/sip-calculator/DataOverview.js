@@ -1,15 +1,15 @@
 import React from 'react'
-import { numberFormat } from '../helpers/helpers';
+import { numberFormat } from '../../helpers/helpers'
 
 export default function DataOverview({meta}) {
     const { investmentAmount, interestAmount, finalBalance } = meta;
     return (
         <div className="col-md-12">
-            <div className="jumbotron jumbotron-fluid bg-light border-bottom border-grey">
+            <div className="jumbotron jumbotron-fluid bg-white border-bottom border-grey">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-4">
-                            <h4>
+                            <h4><i className="fa fa-bars"></i>
                                 { numberFormat(investmentAmount) }<br/>
                                 <small className="text-muted">INVESTED</small>
                             </h4>
