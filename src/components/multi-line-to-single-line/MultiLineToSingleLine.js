@@ -15,7 +15,7 @@ export default function MultiLineToSingleLine() {
                     <div className="row">
                         <div className="col-md-8">
                             <h1 className="display-6">Multi Line To Single Line text conveter</h1>
-                            <p className="lead">SIP is the best way to accumulate long term wealth.</p>
+                            <p className="lead">You can convert multiner text to single line.</p>
                         </div>
                     </div>
                 </div>
@@ -23,12 +23,14 @@ export default function MultiLineToSingleLine() {
             <div className="row">
                 <div className="col-md-6">
                     <form>
+                        <label className="">Type/Paste multiliner text</label>
                         <div className="form-group">
-                            <textarea rows="16" className="form-control" aria-label="With textarea" name="multiLineText" onChange={e => setText(e.target.value)}></textarea>
+                            <textarea rows="16" className="form-control" aria-label="With textarea" name="multiLineText" onChange={e => setText(e.target.value)}>Here you \n can \n type/paste multi Line Text</textarea>
                         </div>
                     </form>
                 </div>
                 <div className="col-md-6">
+                    <label className="">Converted text</label>
                     <div className="form-group">
                         <textarea rows="16" className="form-control" value={toSingleLine(text, true)}></textarea>
                     </div>
