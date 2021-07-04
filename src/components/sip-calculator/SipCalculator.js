@@ -84,7 +84,7 @@ export default function SipCalculator() {
                             <div class="input-group-prepend">
                                 <span className="input-group-text">&#8377;</span>
                             </div>
-                            <Input name='sipAmount' value={sipAmount} onChange={handleChange} placeholder="How much do you want to invest monthly?" />
+                            <Input name='sipAmount' value={sipAmount} onChange={handleChange} placeholder="How much would invest monthly?" />
                         </div>
                     </div>
                     <div className="form-group">
