@@ -68,57 +68,54 @@ export default function SipCalculator() {
         <>
         <div className="jumbotron jumbotron-fluid">
             <div className="container">
-            <div className="row">
-                <div className="col-md-8">
-                <h1 className="display-6">SIP Calculator</h1>
-                <p className="lead">SIP is the best way to accumulate long term wealth.</p>
                 <div className="row">
-                    <DataOverview meta={meta} />
-                </div>
-                </div>
-                <div className="col-md-4" style={{margin: 'auto 0', paddingTop: '5rem'}}>
-                <form>
-                    <div className="form-group">
-                    {/* <label>How much do you want to invest monthly?</label> */}
-                        <div className="input-group">
-                            <div class="input-group-prepend">
-                                <span className="input-group-text">&#8377;</span>
+                    <div className="col-md-8">
+                        <h1 className="display-6">SIP Calculator</h1>
+                        <p className="lead">SIP is the best way to accumulate long term wealth.</p>
+                        <div className="row">
+                            <DataOverview meta={meta} />
+                        </div>
+                    </div>
+                    <div className="col-md-4" style={{margin: 'auto 0', paddingTop: '5rem'}}>
+                        <form>
+                            <div className="form-group">
+                                <div className="input-group">
+                                    <div class="input-group-prepend">
+                                        <span className="input-group-text">&#8377;</span>
+                                    </div>
+                                    <Input name='sipAmount' value={sipAmount} onChange={handleChange} placeholder="How much would invest monthly?" />
+                                </div>
                             </div>
-                            <Input name='sipAmount' value={sipAmount} onChange={handleChange} placeholder="How much would invest monthly?" />
-                        </div>
+                            <div className="form-group">
+                                <div className="input-group mb-3">
+                                    <Input name='period' value={period} onChange={handleChange} placeholder="Investment Period" />
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">Years</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="input-group mb-3">
+                                    <Input name='rateOfReturn' value={rateOfReturn} onChange={handleChange} placeholder="Expected Annual Returns (%)" />
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <button className="btn btn-block btn-light btn-outline" onClick={(e) =>{e.preventDefault(); calculate()}}>Calculate</button>
+                            </div>
+                        </form>
                     </div>
-                    <div className="form-group">
-                    {/* <label>Investment Period</label> */}
-                    <div className="input-group mb-3">
-                        <Input name='period' value={period} onChange={handleChange} placeholder="Investment Period" />
-                        <div className="input-group-append">
-                            <span className="input-group-text">Years</span>
-                        </div>
-                    </div>
-                    </div>
-                    <div className="form-group">
-                    {/* <label>Expected Annual Returns (%)</label> */}
-                    <div className="input-group mb-3">
-                        <Input name='rateOfReturn' value={rateOfReturn} onChange={handleChange} placeholder="Expected Annual Returns (%)" />
-                        <div className="input-group-append">
-                        <span className="input-group-text">%</span>
-                        </div>
-                    </div>
-                    </div>
-                    <div className="form-group">
-                    <button className="btn btn-block btn-light btn-outline" onClick={(e) =>{e.preventDefault(); calculate()}}>Calculate</button>
-                    </div>
-                </form>
                 </div>
-            </div>
             </div>
         </div>
         <div className="row">
             <div className="col-md-4">
-            <InvestedVsGainChart  meta={meta}/>
+                <InvestedVsGainChart  meta={meta}/>
             </div>
             <div className="col-md-8">
-            { data && <Breakup data={data} /> }
+                { data && <Breakup data={data} /> }
             </div>
         </div>
         </>
