@@ -80,14 +80,19 @@ export default function SipCalculator() {
                 <form>
                     <div className="form-group">
                     {/* <label>How much do you want to invest monthly?</label> */}
-                    <Input name='sipAmount' value={sipAmount} onChange={handleChange} placeholder="Expected Annual Returns (%)" />
+                        <div className="input-group">
+                            <div class="input-group-prepend">
+                                <span className="input-group-text">&#8377;</span>
+                            </div>
+                            <Input name='sipAmount' value={sipAmount} onChange={handleChange} placeholder="How much do you want to invest monthly?" />
+                        </div>
                     </div>
                     <div className="form-group">
                     {/* <label>Investment Period</label> */}
                     <div className="input-group mb-3">
                         <Input name='period' value={period} onChange={handleChange} placeholder="Investment Period" />
                         <div className="input-group-append">
-                        <span className="input-group-text" id="basic-addon2">Years</span>
+                            <span className="input-group-text">Years</span>
                         </div>
                     </div>
                     </div>
@@ -96,7 +101,7 @@ export default function SipCalculator() {
                     <div className="input-group mb-3">
                         <Input name='rateOfReturn' value={rateOfReturn} onChange={handleChange} placeholder="Expected Annual Returns (%)" />
                         <div className="input-group-append">
-                        <span className="input-group-text" id="basic-addon2">%</span>
+                        <span className="input-group-text">%</span>
                         </div>
                     </div>
                     </div>
