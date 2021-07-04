@@ -25,7 +25,7 @@ export default function MultiLineToSingleLine() {
                     <form>
                         <label className="">Type/Paste multiliner text</label>
                         <div className="form-group">
-                            <textarea rows="16" className="form-control" aria-label="With textarea" name="multiLineText" onChange={e => setText(e.target.value)}>Here you \n can \n type/paste multi Line Text</textarea>
+                            <textarea rows="16" className="form-control" aria-label="With textarea" name="multiLineText" onChange={e => setText(e.target.value)}></textarea>
                         </div>
                     </form>
                 </div>
