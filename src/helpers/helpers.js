@@ -6,6 +6,5 @@ export const numberFormat = (value) => {
 
 export const toSingleLine = (multiLineString, noSpaces) => {
     var delimiter = noSpaces ? '' : ' ';
-    return  multiLineString.replace(/\s\s+/g, delimiter).replace(/\n/, " ");
-    // return multiLineString.replace(/\n/," ");
+    return  multiLineString.replace(/\s\s+/g, delimiter).replace(/(?:\r\n|\r|\n)/g, " ");
 };
