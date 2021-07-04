@@ -12,6 +12,7 @@ export default function Header() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <Link to="/sip-calculator" className="nav-link">SIP Calculator</Link>
+                        <Link to="/multi-line-to-single-line" className="nav-link">Multi Line To Single Line</Link>
                         <li className="nav-item">
                             <a className="nav-link" href="http://71anshuman.com">Dev</a>
                         </li>

@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import {Switch, Route} from 'react-router-dom';
-import SipCalculator from './components/sip-calculator/SipCalculator'
+import SipCalculator from './components/sip-calculator'
+import MultiLineToSingleLine from './components/multi-line-to-single-line';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       </Route>
       <Route path="/sip-calculator">
         <SipCalculator />
+      </Route>
+      <Route path="/multi-line-to-single-line">
+        <MultiLineToSingleLine />
       </Route>
     </Switch>
     </div>
