@@ -6,7 +6,7 @@ export const useFinInput = (initialValues) => {
     return [values, e => {
         setValues({
             ...values,
-            [e.target.name]: parseInt(e.target.value)
+            [e.target.name]: parseFloat(e.target.value)
         })
     }]
 }

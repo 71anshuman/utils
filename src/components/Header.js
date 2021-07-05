@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Navlink from '../components/common/Navlink'
 
 export default function Header() {
     return (
@@ -11,10 +12,13 @@ export default function Header() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <Link to="/sip-calculator" className="nav-link">SIP Calculator</Link>
-                        <Link to="/multi-line-to-single-line" className="nav-link">Multi Line To Single Line</Link>
-                        <li className="nav-item">
-                            <a className="nav-link" href="http://71anshuman.com">Dev</a>
+                        <Navlink url="/sip-calculator" text="SIP Calculator"/>
+                        <Navlink url="/multi-line-to-single-line" text="Multi Line To Single Line"/>
+                        <Navlink url="/salary-hike-calculator" text="Salary Hike Calculator" />
+                    </ul>
+                    <ul className="navbar-nav ml-auto" >
+                        <li className="nav-item dropdown">
+                            <a className="nav-link" target="_new" href="https://github.com/71anshuman">Dev</a>
                         </li>
                     </ul>
                 </div>

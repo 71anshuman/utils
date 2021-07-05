@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import { Finance } from 'financejs';
 import Breakup from './Breakup';
@@ -10,6 +10,10 @@ import Input from '../common/Input';
 let finance = new Finance();
 
 export default function SipCalculator() {
+    useEffect(() => {
+        document.title = "SIP Calculator"
+    }, []);
+
     const [{sipAmount, period, rateOfReturn}, handleChange] = useFinInput(
         {
           sipAmount: '',
@@ -80,7 +84,7 @@ export default function SipCalculator() {
                         <form>
                             <div className="form-group">
                                 <div className="input-group">
-                                    <div class="input-group-prepend">
+                                    <div className="input-group-prepend">
                                         <span className="input-group-text">&#8377;</span>
                                     </div>
                                     <Input name='sipAmount' value={sipAmount} onChange={handleChange} placeholder="How much would invest monthly?" />

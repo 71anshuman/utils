@@ -2,6 +2,7 @@ import Header from './components/Header';
 import {Switch, Route} from 'react-router-dom';
 import SipCalculator from './components/sip-calculator'
 import MultiLineToSingleLine from './components/multi-line-to-single-line';
+import SalaryHikePerCalculator from './components/salary-hike-percentage-calculator';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
       </Route>
       <Route path="/multi-line-to-single-line">
         <MultiLineToSingleLine />
+      </Route>
+      <Route path="/salary-hike-calculator">
+        <SalaryHikePerCalculator />
       </Route>
     </Switch>
     </div>

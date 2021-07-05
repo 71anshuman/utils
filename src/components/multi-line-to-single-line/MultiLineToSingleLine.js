@@ -4,7 +4,7 @@ import {toSingleLine} from '../../helpers/helpers';
 export default function MultiLineToSingleLine() {
     useEffect(() => {
         document.title = "Multi Line To Single Line text converter"
-     }, []);
+    }, []);
 
     const [text, setText] = useState("");
 
@@ -23,15 +23,15 @@ export default function MultiLineToSingleLine() {
             <div className="row">
                 <div className="col-md-6">
                     <form>
-                        <label className="">Type/Paste multiliner text</label>
                         <div className="form-group">
+                            <label for="multiLineText">Type/Paste multiliner text</label>
                             <textarea rows="16" className="form-control" aria-label="With textarea" name="multiLineText" onChange={e => setText(e.target.value)}></textarea>
                         </div>
                     </form>
                 </div>
                 <div className="col-md-6">
-                    <label className="">Converted text</label>
                     <div className="form-group">
+                        <label className="">Converted text</label>
                         <textarea rows="16" className="form-control" value={toSingleLine(text, true)}></textarea>
                     </div>
                 </div>
