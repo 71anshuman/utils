@@ -4,9 +4,10 @@ export const useFinInput = (initialValues) => {
     const [values, setValues] = useState(initialValues);
 
     return [values, e => {
+        const {name, value} = e.target;
         setValues({
             ...values,
-            [e.target.name]: parseFloat(e.target.value)
+            [name]: parseFloat(value)
         })
     }]
 }
