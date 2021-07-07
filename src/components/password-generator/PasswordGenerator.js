@@ -21,6 +21,7 @@ export default function PasswordGenerator() {
                             <div className="row">
                                 <div className="col-12">
                                     <div className="form-group">
+                                        <label>Generated Password</label>
                                         <div class="input-group">
                                             <input type="text" className="form-control disabled" value={password} placeholder="Generated Password" />
                                             <div class="input-group-append">
