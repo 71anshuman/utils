@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 import SipCalculator from './components/sip-calculator'
 import MultiLineToSingleLine from './components/multi-line-to-single-line';
 import SalaryHikePerCalculator from './components/salary-hike-percentage-calculator';
+import PasswordGenerator from './components/password-generator';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
       </Route>
       <Route path="/salary-hike-calculator">
         <SalaryHikePerCalculator />
+      </Route>
+      <Route path="/password-generator">
+        <PasswordGenerator />
       </Route>
     </Switch>
     </div>

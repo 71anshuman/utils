@@ -15,6 +15,7 @@ export default function Header() {
                         <Navlink url="/sip-calculator" text="SIP Calculator"/>
                         <Navlink url="/multi-line-to-single-line" text="Multi Line To Single Line"/>
                         <Navlink url="/salary-hike-calculator" text="Salary Hike Calculator" />
+                        <Navlink url="/password-generator" text="Password Generator" />
                     </ul>
                     <ul className="navbar-nav ml-auto" >
                         <li className="nav-item dropdown">
