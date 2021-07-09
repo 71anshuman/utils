@@ -15,6 +15,7 @@ export default function PasswordGenerator() {
 
     function generatePassword() {
         setPassword(createPassword(len, hasNumbers, hasSymbols));
+        setCopied(false);
     }
 
     return (
