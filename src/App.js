@@ -4,6 +4,7 @@ import SipCalculator from './components/sip-calculator'
 import MultiLineToSingleLine from './components/multi-line-to-single-line';
 import SalaryHikePerCalculator from './components/salary-hike-percentage-calculator';
 import PasswordGenerator from './components/password-generator';
+import WordCounter from "./components/words-counter";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
       </Route>
       <Route path="/password-generator">
         <PasswordGenerator />
+      </Route>
+      <Route path="/word-counter">
+        <WordCounter />
       </Route>
     </Switch>
     </div>

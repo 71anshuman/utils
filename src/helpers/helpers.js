@@ -27,3 +27,17 @@ const generatePassword = (length, chars) => {
   }
   return password
 }
+
+
+export const countWords = (str) => {
+  let res = [];
+  str = str.replace(/[\t\n\r.?!]/gm, " ").split(" ");
+  str.map((s) => {
+    let trimStr = s.trim();
+    if (trimStr.length > 0) {
+      res.push(trimStr);
+    }
+    return null;
+  });
+  return res.length;
+}
