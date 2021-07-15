@@ -5,6 +5,7 @@ import MultiLineToSingleLine from './components/multi-line-to-single-line';
 import SalaryHikePerCalculator from './components/salary-hike-percentage-calculator';
 import PasswordGenerator from './components/password-generator';
 import WordCounter from "./components/words-counter";
+import JsonFormatter from './components/json-formatter/JsonFormatter';
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
       </Route>
       <Route path="/word-counter">
         <WordCounter />
+      </Route>
+      <Route path="/json-formatter">
+        <JsonFormatter />
       </Route>
     </Switch>
     </div>

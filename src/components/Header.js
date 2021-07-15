@@ -17,6 +17,7 @@ export default function Header() {
                         <Navlink url="/salary-hike-calculator" text="Salary Hike Calculator" />
                         <Navlink url="/password-generator" text="Password Generator" />
                         <Navlink url="/word-counter" text="Word Counter" />
+                        <Navlink url="/json-formatter" text="JSON Formatter" />
                     </ul>
                     <ul className="navbar-nav ml-auto" >
                         <li className="nav-item dropdown">
