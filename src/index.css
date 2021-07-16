@@ -26,3 +26,11 @@ code {
   left: auto !important;
   right: 0px;
 }
+
+.nav-link {
+  font-size: 88%;
+}
+
+.active.nav-link {
+  font-size: 100% !important;
+}

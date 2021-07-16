@@ -5,7 +5,8 @@ import MultiLineToSingleLine from './components/multi-line-to-single-line';
 import SalaryHikePerCalculator from './components/salary-hike-percentage-calculator';
 import PasswordGenerator from './components/password-generator';
 import WordCounter from "./components/words-counter";
-import JsonFormatter from './components/json-formatter/JsonFormatter';
+import JsonFormatter from './components/json-formatter';
+import Base64Converter from './components/base64-converter/Base64Converter';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
       </Route>
       <Route path="/json-formatter">
         <JsonFormatter />
+      </Route>
+      <Route path="/base-64-converter">
+        <Base64Converter />
       </Route>
     </Switch>
     </div>

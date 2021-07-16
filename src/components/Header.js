@@ -18,6 +18,7 @@ export default function Header() {
                         <Navlink url="/password-generator" text="Password Generator" />
                         <Navlink url="/word-counter" text="Word Counter" />
                         <Navlink url="/json-formatter" text="JSON Formatter" />
+                        <Navlink url="/base-64-converter" text="Base64 Converter" />
                     </ul>
                     <ul className="navbar-nav ml-auto" >
                         <li className="nav-item dropdown">
