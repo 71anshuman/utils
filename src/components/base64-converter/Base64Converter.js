@@ -5,8 +5,8 @@ export default function Base64Converter() {
         document.title = "Base64 Converter"
     }, []);
 
-    const [text, setText] = useState("71anshuman.com");
-    const [encoded, setEncoded] = useState("NzFhbnNodW1hbi5jb20=");
+    const [text, setText] = useState("https://tools.71anshuman.com");
+    const [encoded, setEncoded] = useState("aHR0cHM6Ly90b29scy43MWFuc2h1bWFuLmNvbQ==");
 
     function to64() {
         setEncoded(btoa(unescape(encodeURIComponent(text))))
