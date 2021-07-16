@@ -42,7 +42,7 @@ export default function Base64Converter() {
                         <button className="btn btn-dark btn-block" onClick={() => to64()}>
                             Convert To Base64
                         </button>
-                        <button className="btn btn-dark btn-block" onClick={() => toText()}>
+                        <button className="btn btn-outline-dark btn-block" onClick={() => toText()}>
                             Convert To Text
                         </button>
                     </div>
