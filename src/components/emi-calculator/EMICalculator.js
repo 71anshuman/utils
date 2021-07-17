@@ -21,7 +21,7 @@ export default function EMICalculator() {
         }
     );
     
-    const [meta, setMeta] = useState({loanAmount: 0, interestAmount: 0, finalBalance: 0});
+    const [meta, setMeta] = useState({loanAmount: 0, interestAmount: 0, finalBalance: 0, emi: 0});
     const [data, setData] = useState([]);
     
     function calculate() {
