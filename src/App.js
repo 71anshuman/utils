@@ -7,6 +7,7 @@ import PasswordGenerator from './components/password-generator';
 import WordCounter from "./components/words-counter";
 import JsonFormatter from './components/json-formatter';
 import Base64Converter from './components/base64-converter/Base64Converter';
+import EMICalculator from './components/emi-calculator';
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
       </Route>
       <Route path="/base-64-converter">
         <Base64Converter />
+      </Route>
+      <Route path="/emi-calculator">
+        <EMICalculator />
       </Route>
     </Switch>
     </div>

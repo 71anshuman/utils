@@ -107,7 +107,7 @@ export default function SipCalculator() {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <button className="btn btn-block btn-light btn-outline" onClick={(e) =>{e.preventDefault(); calculate()}}>Calculate</button>
+                                <button className="btn btn-block btn-dark btn-outline" onClick={(e) =>{e.preventDefault(); calculate()}}>Calculate</button>
                             </div>
                         </form>
                     </div>

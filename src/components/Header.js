@@ -12,13 +12,14 @@ export default function Header() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <Navlink url="/sip-calculator" text="SIP Calculator"/>
-                        <Navlink url="/multi-line-to-single-line" text="Multi Line To Single Line"/>
-                        <Navlink url="/salary-hike-calculator" text="Salary Hike Calculator" />
-                        <Navlink url="/password-generator" text="Password Generator" />
+                        <Navlink url="/sip-calculator" text="SIP Calc"/>
+                        <Navlink url="/multi-line-to-single-line" text="Multi To Single Line"/>
+                        <Navlink url="/salary-hike-calculator" text="Salary Hike Calc" />
+                        <Navlink url="/password-generator" text="Password Gen" />
                         <Navlink url="/word-counter" text="Word Counter" />
                         <Navlink url="/json-formatter" text="JSON Formatter" />
-                        <Navlink url="/base-64-converter" text="Base64 Converter" />
+                        <Navlink url="/base-64-converter" text="Base64 Conv" />
+                        <Navlink url="/emi-calculator" text="EMI Calc" />
                     </ul>
                     <ul className="navbar-nav ml-auto" >
                         <li className="nav-item dropdown">
