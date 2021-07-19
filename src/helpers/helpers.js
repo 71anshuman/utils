@@ -41,3 +41,15 @@ export const countWords = (str) => {
   });
   return res.length;
 }
+
+export const getInterestVsLoanAmountData = (installments) => {
+  var data = [[
+    'Year', 'InterestAmount', 'LoanAmount'
+  ]];
+  var i = 1;
+  installments.forEach(installment => {
+    const {capital, interest} = installment;
+    data.push([i++, interest, capital]);
+  });
+  return data;
+}

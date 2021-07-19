@@ -2,8 +2,10 @@ import React, {useState, useEffect} from 'react'
 
 import Breakup from './Breakup';
 import AmountVsInterestChart from './AmountVsInterestChart';
+import InterestVsLoanAmountChart from './InterestVsLoanAmountChart';
 import DataOverview from './DataOverview';
 import { useFinInput } from '../../hooks/useFinInput';
+import { getInterestVsLoanAmountData } from '../../helpers/helpers'
 import Input from '../common/Input';
 import LoanJS from 'loanjs'
 
@@ -21,7 +23,16 @@ export default function EMICalculator() {
         }
     );
     
-    const [meta, setMeta] = useState({loanAmount: 0, interestAmount: 0, finalBalance: 0, emi: 0});
+    const [meta, setMeta] = useState({
+        loanAmount: 0,
+        interestAmount: 0,
+        finalBalance: 0,
+        emi: 0,
+        installments: []
+    });
+
+    const { installments } = meta;
+
     const [data, setData] = useState([]);
     
     function calculate() {
@@ -39,7 +50,8 @@ export default function EMICalculator() {
             rateOfInterest,
             finalBalance: sum,
             interestAmount: interestSum,
-            emi:installments[0].installment
+            emi:installments[0].installment,
+            installments: installments
         });
 
         setData(installments)
@@ -54,10 +66,14 @@ export default function EMICalculator() {
                         <h1 className="display-6">EMI Calculator</h1>
                         <p className="lead">Tip: Your loan tenure must be very less</p>
                         <div className="row">
-                            <DataOverview meta={meta} />
+                            {
+                                meta.emi > 0 && <DataOverview meta={meta} />
+                            }
                         </div>
                     </div>
-                    <div className="col-md-4" style={{margin: 'auto 0', paddingTop: '5rem'}}>
+                    <div className="col-md-4 bg-white" style={{margin: 'auto 0', padding: '2rem 1.5rem'}}>
+                        <h2 className="display-5">Loan Details</h2>
+                        <hr />
                         <form>
                             <div className="form-group">
                                 <div className="input-group">
@@ -92,6 +108,9 @@ export default function EMICalculator() {
             </div>
         </div>
         <div className="row">
+            <div className="col-md-12">
+                <InterestVsLoanAmountChart data={getInterestVsLoanAmountData(installments)} />
+            </div>
             <div className="col-md-4">
                 <AmountVsInterestChart  meta={meta}/>
             </div>
