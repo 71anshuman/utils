@@ -73,7 +73,7 @@ export default function JsonFormatter() {
                                 </button>
                             </CopyToClipboard>
                         </div>
-                        <textarea rows="16" className="form-control" value={prerryJSON}></textarea>
+                        <textarea rows="16" readOnly className="form-control" value={prerryJSON}></textarea>
                     </div>
                 </div>
             </div>

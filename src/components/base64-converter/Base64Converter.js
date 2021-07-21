@@ -32,7 +32,7 @@ export default function Base64Converter() {
                 <div className="col-md-5">
                     <form>
                         <div className="form-group">
-                            <label for="multiLineText">Type/Paste multiliner text</label>
+                            <label htmlFor="multiLineText">Type/Paste multiliner text</label>
                             <textarea rows="16" className="form-control" value={text} name="multiLineText" onChange={e => setText(e.target.value)}></textarea>
                         </div>
                     </form>

@@ -24,7 +24,7 @@ export default function MultiLineToSingleLine() {
                 <div className="col-md-6">
                     <form>
                         <div className="form-group">
-                            <label for="multiLineText">Type/Paste multiliner text</label>
+                            <label htmlFor="multiLineText">Type/Paste multiliner text</label>
                             <textarea rows="16" className="form-control" aria-label="With textarea" name="multiLineText" onChange={e => setText(e.target.value)}></textarea>
                         </div>
                     </form>
@@ -32,7 +32,7 @@ export default function MultiLineToSingleLine() {
                 <div className="col-md-6">
                     <div className="form-group">
                         <label className="">Converted text</label>
-                        <textarea rows="16" className="form-control" value={toSingleLine(text, true)}></textarea>
+                        <textarea rows="16" readOnly className="form-control" value={toSingleLine(text, true)}></textarea>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@ export default function WordCounter() {
                 <div className="col-md-8">
                     <form>
                         <div className="form-group">
-                            <label for="multiLineText">Type/Paste text</label>
+                            <label htmlFor="multiLineText">Type/Paste text</label>
                             <textarea rows="16" className="form-control" aria-label="With textarea" name="multiLineText" onChange={e => setText(e.target.value)}></textarea>
                         </div>
                     </form>

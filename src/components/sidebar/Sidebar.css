@@ -1,0 +1,24 @@
+.left-sidebar {
+    padding: 20px 0;
+    padding-right: 10px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    z-index: 1;
+}
+
+.navlink.btn-outline-light {
+    border: none;
+    border-radius: 0 15px 15px 0;
+    text-align: left;
+    padding-left: 15%;
+}
+
+.btn-outline-light:hover {
+    background-color: #dfe6e9;
+    color: #34495e;
+}
+
+.btn-outline-light:focus {
+    box-shadow: none !important;
+}
