@@ -45,7 +45,7 @@ export default function PasswordGenerator() {
                             <form>
                                 <div className="form-group">
                                     <label>Password Length</label>
-                                    <div className="input-group">''''
+                                    <div className="input-group">
                                         <Input name='password-length' value={len} onChange={e => setLen(e.target.value)} placeholder="Password Length" />
                                     </div>
                                 </div>

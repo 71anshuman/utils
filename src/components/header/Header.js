@@ -9,10 +9,7 @@ export default function Header({sidebar}) {
             <Menu sidebar={sidebar} />
             <div className="container">
                 <Link className="navbar-brand" to="/">Tools</Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div id="navbarNav">
                     <ul className="navbar-nav">
                         {/* <Navlink url="/sip-calculator" text="SIP Calc"/>
                         <Navlink url="/multi-line-to-single-line" text="Multi To Single Line"/>

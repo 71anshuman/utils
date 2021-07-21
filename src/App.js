@@ -19,7 +19,7 @@ function App() {
     <div className="container-fluid">
       <div className="row">
         {showSidebar &&
-          <Sidebar />
+          <Sidebar sidebar={{setShowSidebar: setShowSidebar, showSidebar: showSidebar}}/>
         }
         <div className={`${showSidebar ? 'col-10 offset-md-2 ': 'col-12'}`}>
           <Switch>
