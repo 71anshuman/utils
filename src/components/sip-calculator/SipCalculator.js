@@ -80,7 +80,7 @@ export default function SipCalculator() {
                             <DataOverview meta={meta} />
                         </div>
                     </div>
-                    <div className="col-md-4" style={{margin: 'auto 0', paddingTop: '5rem'}}>
+                    <div className="col-md-4 bg-white" style={{margin: 'auto 0', paddingTop: '5rem'}}>
                         <form>
                             <div className="form-group">
                                 <div className="input-group">
