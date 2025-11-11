@@ -14,7 +14,14 @@ export default function Sidebar({sidebar}) {
             <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/json-formatter" text="JSON Formatter" />
             <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/base-64-converter" text="Base64 Conv" />
             <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/emi-calculator" text="EMI Calc" />
-                <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/qr-code-generator" text="QR Code Gen" />
+            <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/qr-code-generator" text="QR Code Gen" />
+            <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/color-picker" text="Color Picker" />
+            <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/text-case-converter" text="Text Case Conv" />
+            <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/url-encoder" text="URL Encoder" />
+            <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/hash-generator" text="Hash Generator" />
+            <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/timestamp-converter" text="Timestamp Conv" />
+            <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/lorem-generator" text="Lorem Ipsum" />
+            <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/regex-tester" text="Regex Tester" />
         </div>
     )
 }

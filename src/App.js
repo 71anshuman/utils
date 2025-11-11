@@ -11,6 +11,13 @@ import Base64Converter from './components/base64-converter/Base64Converter';
 import EMICalculator from './components/emi-calculator';
 import Sidebar from './components/sidebar';
 import QrCodeGenerator from './components/qr-code-generator';
+import ColorPicker from './components/color-picker';
+import TextCaseConverter from './components/text-case-converter';
+import UrlEncoder from './components/url-encoder';
+import HashGenerator from './components/hash-generator';
+import TimestampConverter from './components/timestamp-converter';
+import LoremGenerator from './components/lorem-generator';
+import RegexTester from './components/regex-tester';
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -51,9 +58,30 @@ function App() {
             <Route path="/emi-calculator">
               <EMICalculator />
             </Route>
-              <Route path="/qr-code-generator">
-                <QrCodeGenerator />
-              </Route>
+            <Route path="/qr-code-generator">
+              <QrCodeGenerator />
+            </Route>
+            <Route path="/color-picker">
+              <ColorPicker />
+            </Route>
+            <Route path="/text-case-converter">
+              <TextCaseConverter />
+            </Route>
+            <Route path="/url-encoder">
+              <UrlEncoder />
+            </Route>
+            <Route path="/hash-generator">
+              <HashGenerator />
+            </Route>
+            <Route path="/timestamp-converter">
+              <TimestampConverter />
+            </Route>
+            <Route path="/lorem-generator">
+              <LoremGenerator />
+            </Route>
+            <Route path="/regex-tester">
+              <RegexTester />
+            </Route>
           </Switch>
           </div>
       </div>
