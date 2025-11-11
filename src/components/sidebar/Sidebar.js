@@ -14,6 +14,7 @@ export default function Sidebar({sidebar}) {
             <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/json-formatter" text="JSON Formatter" />
             <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/base-64-converter" text="Base64 Conv" />
             <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/emi-calculator" text="EMI Calc" />
+                <ButtonLink onClick={() => setShowSidebar(!showSidebar)} url="/qr-code-generator" text="QR Code Gen" />
         </div>
     )
 }

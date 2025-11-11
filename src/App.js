@@ -10,6 +10,7 @@ import JsonFormatter from './components/json-formatter';
 import Base64Converter from './components/base64-converter/Base64Converter';
 import EMICalculator from './components/emi-calculator';
 import Sidebar from './components/sidebar';
+import QrCodeGenerator from './components/qr-code-generator';
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -50,6 +51,9 @@ function App() {
             <Route path="/emi-calculator">
               <EMICalculator />
             </Route>
+              <Route path="/qr-code-generator">
+                <QrCodeGenerator />
+              </Route>
           </Switch>
           </div>
       </div>
