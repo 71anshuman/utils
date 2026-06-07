@@ -5,15 +5,3 @@ Disallow: /static/
 
 # Sitemap
 Sitemap: https://tools.71anshuman.com/sitemap.xml
-
-# Popular tools for better indexing
-Allow: /#/qr-code-generator
-Allow: /#/url-encoder  
-Allow: /#/hash-generator
-Allow: /#/color-picker
-Allow: /#/text-case-converter
-Allow: /#/timestamp-converter
-Allow: /#/lorem-generator
-Allow: /#/regex-tester
-Allow: /#/password-generator
-Allow: /#/base-64-converter
