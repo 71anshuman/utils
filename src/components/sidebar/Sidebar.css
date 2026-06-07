@@ -5,13 +5,32 @@
     position: fixed;
     left: 0;
     z-index: 99999;
+    overflow-y: auto;
+}
+
+.sidebar-section {
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.sidebar-section-title {
+    color: #a0a8b3;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 5px 10px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .navlink.btn-outline-light {
     border: none;
-    border-radius: 0 15px 15px 0;
+    border-radius: 8px;
     text-align: left;
-    padding-left: 15%;
+    padding-left: 12px;
+    margin-bottom: 2px;
+    font-size: 0.9rem;
 }
 
 .btn-outline-light:hover {
