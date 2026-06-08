@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Header from './components/header/Header';
 import {Switch, Route} from 'react-router-dom';
 import SipCalculator from './components/sip-calculator'
@@ -31,23 +31,83 @@ import JsMinifier from './components/js-minifier';
 import MarkdownConverter from './components/markdown-converter';
 import UnitConverter from './components/unit-converter';
 
+// Redesign & Additions
+import Dashboard from './components/dashboard';
+import DiffViewer from './components/diff-viewer';
+import JwtDecoder from './components/jwt-decoder';
+import JsonDiff from './components/json-diff';
+
 function App() {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(() => {
+    const saved = localStorage.getItem('devutils_show_sidebar');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
+  
+  // Theme state
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem('devutils_theme');
+    if (saved) return saved;
+    // Check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  });
+
+  // Starred / Favorites State
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const saved = localStorage.getItem('devutils_favorites');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => {
+      const nextTheme = prevTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('devutils_theme', nextTheme);
+      return nextTheme;
+    });
+  };
+
+  const toggleFavorite = (id) => {
+    setFavorites(prev => {
+      const updated = prev.includes(id)
+        ? prev.filter(item => item !== id)
+        : [...prev, id];
+      localStorage.setItem('devutils_favorites', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem('devutils_show_sidebar', JSON.stringify(showSidebar));
+  }, [showSidebar]);
+
   return (
     <>
-    <Header sidebar={{setShowSidebar: setShowSidebar, showSidebar: showSidebar}} />
-    <div className="container-fluid">
-      <div className="row">
-        {showSidebar &&
-          <Sidebar sidebar={{setShowSidebar: setShowSidebar, showSidebar: showSidebar}}/>
-        }
-        <div className={`${showSidebar ? 'col-10 offset-md-2 ': 'col-12'}`}>
+    <Header sidebar={{setShowSidebar: setShowSidebar, showSidebar: showSidebar}} theme={theme} toggleTheme={toggleTheme} />
+    <div className="container-fluid px-0">
+      {showSidebar &&
+        <Sidebar 
+          sidebar={{setShowSidebar: setShowSidebar, showSidebar: showSidebar}}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
+        />
+      }
+      <div className={`main-content ${showSidebar ? 'sidebar-open' : 'sidebar-closed'} py-4`}>
           <Switch>
             <Route exact path="/">
-              <SipCalculator />
+              <Dashboard favorites={favorites} toggleFavorite={toggleFavorite} />
             </Route>
             <Route path="/sip-calculator">
-              <SipCalculator />
+              <SipCalculator theme={theme} />
             </Route>
             <Route path="/multi-line-to-single-line">
               <MultiLineToSingleLine />
@@ -68,7 +128,7 @@ function App() {
               <Base64Converter />
             </Route>
             <Route path="/emi-calculator">
-              <EMICalculator />
+              <EMICalculator theme={theme} />
             </Route>
             <Route path="/qr-code-generator">
               <QrCodeGenerator />
@@ -124,9 +184,17 @@ function App() {
             <Route path="/unit-converter">
               <UnitConverter />
             </Route>
+            <Route path="/diff-viewer">
+              <DiffViewer />
+            </Route>
+            <Route path="/jwt-decoder">
+              <JwtDecoder />
+            </Route>
+            <Route path="/json-diff">
+              <JsonDiff />
+            </Route>
           </Switch>
           </div>
-      </div>
     </div>
     </>
   );

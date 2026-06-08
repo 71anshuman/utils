@@ -8,7 +8,7 @@ export default function Breakup(props) {
         <div className="row">
             <div className="col-md-12">
                 {data.length > 0 &&
-                    <button className="btn btn-light text-uppercase" onClick={(() => setShowTable(state => !state))}> { showTable ? 'hide table' : 'Show Detail' }</button>
+                    <button className="btn btn-outline-light text-uppercase mb-3" onClick={(() => setShowTable(state => !state))}> { showTable ? 'HIDE TABLE' : 'SHOW DETAIL' }</button>
                 }
                 {showTable &&
                     <table className="table table-striped table-hover table-sm scroll">

@@ -1,5 +1,24 @@
-.menu-button:focus {
-    box-shadow: none;
-    outline: none;
-    background-color: #e9ecef;
+.menu-button {
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color) !important;
+    background-color: var(--bg-card) !important;
+    border-radius: 50% !important;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    margin-right: 12px;
+    box-shadow: var(--box-shadow-sm);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.menu-button:hover, .menu-button:focus, .menu-button:active {
+    box-shadow: var(--box-shadow-md) !important;
+    outline: none !important;
+    background-color: var(--primary-light) !important;
+    color: var(--primary-on-light) !important;
+    border-color: var(--primary) !important;
 }

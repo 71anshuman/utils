@@ -178,6 +178,24 @@ const routes = [
     title: 'Online Unit Converter - Length, Mass, Temp & Data',
     description: 'Convert values between different metric and imperial units of length, mass, temperature, and digital data.',
     keywords: 'unit converter, convert length, convert temp, metric converter'
+  },
+  {
+    path: 'diff-viewer',
+    title: 'Online Text Diff Viewer - Compare Code & Text Side-by-Side',
+    description: 'Compare two text snippets side-by-side or inline to spot differences. Visual highlight of line insertions and deletions.',
+    keywords: 'diff viewer, text compare, compare text, code diff online'
+  },
+  {
+    path: 'jwt-decoder',
+    title: 'Online JWT Decoder - Decode and Inspect JSON Web Tokens',
+    description: 'Decode, parse, and verify JSON Web Tokens (JWT) online. Read header, payload claims, signature, and expiration times.',
+    keywords: 'jwt decoder, decode jwt, jwt token parser, JSON web token'
+  },
+  {
+    path: 'json-diff',
+    title: 'Online JSON Diff Checker - Compare two JSON Objects',
+    description: 'Find structural and text differences between two JSON objects online. Automatically parses, prettifies, and sorts keys before comparison.',
+    keywords: 'json diff, compare json, json diff online, find differences in json'
   }
 ];
 

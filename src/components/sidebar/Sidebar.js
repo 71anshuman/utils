@@ -1,9 +1,18 @@
-import React from 'react'
-import ButtonLink from './ButtonLink'
-import './Sidebar.css'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { TOOLS } from '../../constants';
+import './Sidebar.css';
 
-export default function Sidebar({sidebar}) {
-    const {setShowSidebar} = sidebar;
+export default function Sidebar({ sidebar, favorites, toggleFavorite }) {
+    const { setShowSidebar } = sidebar;
+    const [searchQuery, setSearchQuery] = useState('');
+    const [collapsed, setCollapsed] = useState({
+        Favorites: false,
+        Financial: false,
+        Developer: false,
+        Text: false,
+        Utilities: false
+    });
 
     const handleLinkClick = () => {
         if (window.innerWidth < 768) {
@@ -11,49 +20,144 @@ export default function Sidebar({sidebar}) {
         }
     };
 
+    const toggleCollapse = (category) => {
+        setCollapsed(prev => ({
+            ...prev,
+            [category]: !prev[category]
+        }));
+    };
+
+    // Filter tools based on search query
+    const filteredTools = TOOLS.filter(tool => 
+        tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tool.category.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const categories = ['Financial', 'Developer', 'Text', 'Utilities'];
+
+    const favoriteTools = TOOLS.filter(t => favorites.includes(t.id) && t.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
     return (
-        <div className="col-md-2 col-sm-6 bg-dark left-sidebar">
-            <div className="sidebar-section">
-                <div className="sidebar-section-title">📊 Financial Tools</div>
-                <ButtonLink onClick={handleLinkClick} url="/sip-calculator" text="SIP Calculator"/>
-                <ButtonLink onClick={handleLinkClick} url="/emi-calculator" text="EMI Calculator"/>
-                <ButtonLink onClick={handleLinkClick} url="/salary-hike-calculator" text="Salary Hike Calc"/>
+        <div className="col-md-2 col-sm-6 left-sidebar d-flex flex-column">
+            {/* Sidebar Search */}
+            <div className="px-3 mb-4">
+                <div className="input-group input-group-sm">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search tools..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        style={{
+                            fontSize: '0.85rem',
+                            padding: '8px 12px !important',
+                            height: '36px'
+                        }}
+                    />
+                    {searchQuery && (
+                        <div className="input-group-append">
+                            <button 
+                                className="btn btn-outline-secondary btn-sm"
+                                onClick={() => setSearchQuery('')}
+                                style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0, border: '1px solid var(--border-color)', background: 'var(--bg-card)' }}
+                            >
+                                ✕
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
 
-            <div className="sidebar-section">
-                <div className="sidebar-section-title">⚙️ Developer Tools</div>
-                <ButtonLink onClick={handleLinkClick} url="/json-formatter" text="JSON Formatter"/>
-                <ButtonLink onClick={handleLinkClick} url="/csv-to-json-converter" text="CSV to JSON"/>
-                <ButtonLink onClick={handleLinkClick} url="/css-minifier" text="CSS Minifier"/>
-                <ButtonLink onClick={handleLinkClick} url="/js-minifier" text="JS Minifier"/>
-                <ButtonLink onClick={handleLinkClick} url="/regex-tester" text="Regex Tester"/>
-                <ButtonLink onClick={handleLinkClick} url="/html-entity-encoder" text="HTML Entity Enc"/>
-                <ButtonLink onClick={handleLinkClick} url="/hash-generator" text="Hash Generator"/>
-                <ButtonLink onClick={handleLinkClick} url="/guid-generator" text="GUID/UUID Gen"/>
-                <ButtonLink onClick={handleLinkClick} url="/base-64-converter" text="Base64 Converter"/>
-                <ButtonLink onClick={handleLinkClick} url="/url-encoder" text="URL Encoder/Dec"/>
-                <ButtonLink onClick={handleLinkClick} url="/password-generator" text="Password Gen"/>
-            </div>
+            {/* Scrollable Links Area */}
+            <div className="flex-grow-1 overflow-auto px-1">
+                
+                {/* Favorites Category */}
+                {favoriteTools.length > 0 && (
+                    <div className="sidebar-section mb-3">
+                        <div className="sidebar-category-header" onClick={() => toggleCollapse('Favorites')}>
+                            <span>⭐ Favorites</span>
+                            <span style={{ fontSize: '0.7rem' }}>{collapsed.Favorites ? '▼' : '▲'}</span>
+                        </div>
+                        <div className={`sidebar-category-content ${collapsed.Favorites ? 'collapsed' : ''}`} style={{ maxHeight: '1000px' }}>
+                            {favoriteTools.map(tool => (
+                                <div key={tool.id} className="d-flex align-items-center justify-content-between position-relative">
+                                    <NavLink 
+                                        to={tool.path} 
+                                        onClick={handleLinkClick} 
+                                        activeClassName="active" 
+                                        className="navlink w-100 pr-5"
+                                    >
+                                        <span>{tool.icon} <span className="ml-2">{tool.name}</span></span>
+                                    </NavLink>
+                                    <span 
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            toggleFavorite(tool.id);
+                                        }}
+                                        className="favorite-star active position-absolute"
+                                        style={{ right: '12px', zIndex: 10, userSelect: 'none' }}
+                                    >
+                                        ★
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
-            <div className="sidebar-section">
-                <div className="sidebar-section-title">📝 Text & Content</div>
-                <ButtonLink onClick={handleLinkClick} url="/word-counter" text="Word Counter"/>
-                <ButtonLink onClick={handleLinkClick} url="/multi-line-to-single-line" text="Multi to Single Line"/>
-                <ButtonLink onClick={handleLinkClick} url="/text-case-converter" text="Text Case Conv"/>
-                <ButtonLink onClick={handleLinkClick} url="/markdown-converter" text="Markdown Converter"/>
-                <ButtonLink onClick={handleLinkClick} url="/lorem-generator" text="Lorem Ipsum Gen"/>
-                <ButtonLink onClick={handleLinkClick} url="/ascii-art-generator" text="ASCII Art Gen"/>
-            </div>
+                {/* Standard Categories */}
+                {categories.map(cat => {
+                    const catTools = filteredTools.filter(t => t.category === cat);
+                    if (catTools.length === 0) return null;
 
-            <div className="sidebar-section">
-                <div className="sidebar-section-title">🎨 Utilities & Design</div>
-                <ButtonLink onClick={handleLinkClick} url="/color-picker" text="Color Picker"/>
-                <ButtonLink onClick={handleLinkClick} url="/qr-code-generator" text="QR Code Gen"/>
-                <ButtonLink onClick={handleLinkClick} url="/image-compressor" text="Image Compressor"/>
-                <ButtonLink onClick={handleLinkClick} url="/timestamp-converter" text="Timestamp Conv"/>
-                <ButtonLink onClick={handleLinkClick} url="/ip-lookup" text="IP Lookup"/>
-                <ButtonLink onClick={handleLinkClick} url="/unit-converter" text="Unit Converter"/>
+                    const isCollapsed = collapsed[cat];
+                    const catIcon = cat === 'Financial' ? '📊' : cat === 'Developer' ? '⚙️' : cat === 'Text' ? '📝' : '🎨';
+
+                    return (
+                        <div key={cat} className="sidebar-section mb-3">
+                            <div className="sidebar-category-header" onClick={() => toggleCollapse(cat)}>
+                                <span>{catIcon} {cat}</span>
+                                <span style={{ fontSize: '0.7rem' }}>{isCollapsed ? '▼' : '▲'}</span>
+                            </div>
+                            <div className={`sidebar-category-content ${isCollapsed ? 'collapsed' : ''}`} style={{ maxHeight: '1000px' }}>
+                                {catTools.map(tool => {
+                                    const isFav = favorites.includes(tool.id);
+                                    return (
+                                        <div key={tool.id} className="d-flex align-items-center justify-content-between position-relative">
+                                            <NavLink 
+                                                to={tool.path} 
+                                                onClick={handleLinkClick} 
+                                                activeClassName="active" 
+                                                className="navlink w-100 pr-5"
+                                            >
+                                                <span>{tool.icon} <span className="ml-2">{tool.name}</span></span>
+                                            </NavLink>
+                                            <span 
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    toggleFavorite(tool.id);
+                                                }}
+                                                className={`favorite-star ${isFav ? 'active' : ''} position-absolute`}
+                                                style={{ right: '12px', zIndex: 10, userSelect: 'none' }}
+                                            >
+                                                {isFav ? '★' : '☆'}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    );
+                })}
+
+                {filteredTools.length === 0 && favoriteTools.length === 0 && (
+                    <div className="text-center py-4 text-muted small">
+                        No matches found
+                    </div>
+                )}
             </div>
         </div>
-    )
+    );
 }
