@@ -147,10 +147,10 @@ const UnitConverter = () => {
         <div className="col-md-8 offset-md-2">
           <div className="card">
             <div className="card-header bg-purple text-white" style={{ backgroundColor: '#6f42c1' }}>
-              <h4 className="mb-0">
+              <h1 className="h4 mb-0">
                 <i className="fas fa-exchange-alt mr-2"></i>
                 Unit Converter
-              </h4>
+              </h1>
               <small>Convert between various units of measurement</small>
             </div>
             <div className="card-body">
