@@ -1,0 +1,49 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # `npm install` rather than `npm ci` so a slightly stale lockfile does not fail the deploy.
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      # CI=false: CRA treats lint warnings as errors when CI=true.
+      # postbuild runs scripts/generate-routes-seo.js (pre-render + SEO metadata + sitemap).
+      - name: Build and pre-render
+        run: npm run build
+        env:
+          CI: 'false'
+
+      - name: Add CNAME
+        run: cp CNAME build/CNAME
+
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: gh-pages
+          force_orphan: true
+          commit_message: 'deploy: ${{ github.sha }}'
