@@ -1,8 +1,28 @@
+/**
+ * Post-build step: pre-render every route and inject per-route SEO metadata.
+ *
+ * For each route this script:
+ *   1. Loads the built app in headless Chrome (puppeteer) and captures the
+ *      rendered `#root` markup, so crawlers get real content (H1, text,
+ *      internal links) instead of an empty <div id="root"></div>.
+ *   2. Writes build/<route>/index.html with that markup plus route-specific
+ *      <title>, meta description/keywords, Open Graph, Twitter and canonical tags.
+ *   3. Regenerates build/sitemap.xml from the same route list.
+ *
+ * The client (src/index.js) hydrates the pre-rendered markup instead of
+ * re-rendering, so the initial app state must be deterministic — see the
+ * note in src/App.js.
+ *
+ * Usage: runs automatically via the "postbuild" npm script.
+ *        Set PRERENDER=0 to skip the browser step (metadata only).
+ */
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
 
 const BUILD_DIR = path.join(__dirname, '..', 'build');
 const TEMPLATE_PATH = path.join(BUILD_DIR, 'index.html');
+const SITE_URL = 'https://tools.71anshuman.com';
 
 // Helper to escape HTML characters
 function escapeHtml(str) {
@@ -15,41 +35,42 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-// Full SEO configuration for each tool route
+// Full SEO configuration for each tool route.
+// Keep titles <= 60 chars and descriptions <= 160 chars (search snippet limits).
 const routes = [
   {
     path: '',
-    title: 'Free Online Developer & Utility Tools Collection - tools.71anshuman.com',
-    description: 'A comprehensive collection of 25+ free online tools for developers, designers, and professionals. QR code generator, formatters, minifiers, calculators, converters, and more. No signup required, 100% client-side and privacy-first.',
+    title: 'Free Online Developer & Utility Tools - DevUtils',
+    description: '25+ free online tools for developers: QR code generator, JSON formatter, minifiers, SIP & EMI calculators, converters and more. No signup, 100% client-side.',
     keywords: 'online tools, developer tools, free tools, formatters, minifiers, calculators, converters, privacy tools'
   },
   {
     path: 'sip-calculator',
-    title: 'Online SIP Calculator - Calculate Mutual Fund Investment Returns',
+    title: 'SIP Calculator - Mutual Fund Investment Returns Online',
     description: 'Calculate your Mutual Fund SIP returns online with our free interactive SIP calculator. Visualize your wealth growth with interactive charts.',
     keywords: 'SIP calculator, mutual fund calculator, SIP returns, investment calculator'
   },
   {
     path: 'emi-calculator',
-    title: 'Online Loan EMI Calculator - Calculate Home, Car, & Personal Loan EMI',
+    title: 'EMI Calculator - Home, Car & Personal Loan EMI Online',
     description: 'Calculate monthly loan payments, total interest, and visualize the amortization schedule with our interactive EMI calculator.',
     keywords: 'EMI calculator, loan calculator, home loan EMI, car loan EMI'
   },
   {
     path: 'salary-hike-calculator',
-    title: 'Salary Hike Percentage Calculator - Calculate Increment Percentage',
+    title: 'Salary Hike Percentage Calculator - Increment Calculator',
     description: 'Calculate your salary increment percentage or new salary after increment with our simple salary hike calculator.',
     keywords: 'salary hike calculator, increment calculator, salary percentage increase'
   },
   {
     path: 'json-formatter',
-    title: 'Online JSON Formatter & Beautifier - Format, Validate & Clean JSON',
+    title: 'JSON Formatter & Beautifier - Format & Validate JSON',
     description: 'Format, validate, beautify, and minify your JSON data in real-time. Clean structure, tree view display, and syntax checking.',
     keywords: 'JSON formatter, JSON beautifier, validate JSON, online JSON parser'
   },
   {
     path: 'csv-to-json-converter',
-    title: 'Online CSV to JSON Converter - Convert CSV Tables to JSON Array',
+    title: 'CSV to JSON Converter - Convert CSV to JSON Array Online',
     description: 'Convert CSV files or comma-separated values to JSON arrays instantly. Free online parser with copy-to-clipboard support.',
     keywords: 'CSV to JSON, convert CSV to JSON, CSV parser, Excel to JSON'
   },
@@ -73,7 +94,7 @@ const routes = [
   },
   {
     path: 'html-entity-encoder',
-    title: 'HTML Entity Encoder & Decoder - Escape HTML Special Characters',
+    title: 'HTML Entity Encoder & Decoder - Escape HTML Characters',
     description: 'Encode special characters to HTML entities or decode HTML-encoded strings. Safely escape code for markup.',
     keywords: 'HTML entity encoder, HTML escape, HTML unescape, HTML decoder'
   },
@@ -103,7 +124,7 @@ const routes = [
   },
   {
     path: 'password-generator',
-    title: 'Online Password Generator - Generate Secure & Strong Passwords',
+    title: 'Password Generator - Create Strong & Secure Passwords',
     description: 'Create custom, strong, and highly secure random passwords online. Customize length, numbers, symbols, and uppercase.',
     keywords: 'password generator, random password, secure password, strong password generator'
   },
@@ -199,79 +220,178 @@ const routes = [
   }
 ];
 
-function run() {
+function routeUrl(route) {
+  return `${SITE_URL}/${route.path ? route.path + '/' : ''}`;
+}
+
+function validateRoutes() {
+  const problems = [];
+  routes.forEach((r) => {
+    if (r.title.length > 60) problems.push(`title too long (${r.title.length}): /${r.path}`);
+    if (r.description.length > 160) problems.push(`description too long (${r.description.length}): /${r.path}`);
+  });
+  if (problems.length) {
+    console.warn('SEO metadata warnings:\n  ' + problems.join('\n  '));
+  }
+}
+
+function applyMeta(baseHtml, route) {
+  let html = baseHtml;
+  const url = routeUrl(route);
+
+  html = html.replace(/<title>.*?<\/title>/gis, `<title>${escapeHtml(route.title)}</title>`);
+  html = html.replace(
+    /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/gis,
+    `<meta name="description" content="${escapeHtml(route.description)}" />`
+  );
+  html = html.replace(
+    /<meta\s+name="keywords"\s+content="[^"]*"\s*\/?>/gis,
+    `<meta name="keywords" content="${escapeHtml(route.keywords)}" />`
+  );
+  html = html.replace(
+    /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/gis,
+    `<meta property="og:title" content="${escapeHtml(route.title)}" />`
+  );
+  html = html.replace(
+    /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/gis,
+    `<meta property="og:description" content="${escapeHtml(route.description)}" />`
+  );
+  html = html.replace(
+    /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/gis,
+    `<meta property="og:url" content="${url}" />`
+  );
+  html = html.replace(
+    /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/gis,
+    `<meta name="twitter:title" content="${escapeHtml(route.title)}" />`
+  );
+  html = html.replace(
+    /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/gis,
+    `<meta name="twitter:description" content="${escapeHtml(route.description)}" />`
+  );
+
+  // Canonical: replace if present in template, otherwise insert before </head>
+  const canonical = `<link rel="canonical" href="${url}" />`;
+  if (/<link\s+rel="canonical"[^>]*>/i.test(html)) {
+    html = html.replace(/<link\s+rel="canonical"[^>]*>/i, canonical);
+  } else {
+    html = html.replace('</head>', `${canonical}</head>`);
+  }
+  return html;
+}
+
+function injectRoot(html, rootHtml) {
+  if (!rootHtml) return html;
+  return html.replace(/<div id="root"><\/div>/, () => `<div id="root">${rootHtml}</div>`);
+}
+
+function writeRoute(route, html) {
+  if (route.path === '') {
+    fs.writeFileSync(TEMPLATE_PATH, html, 'utf8');
+    console.log('Wrote build/index.html');
+  } else {
+    const targetDir = path.join(BUILD_DIR, route.path);
+    fs.mkdirSync(targetDir, { recursive: true });
+    fs.writeFileSync(path.join(targetDir, 'index.html'), html, 'utf8');
+    console.log(`Wrote build/${route.path}/index.html`);
+  }
+}
+
+function writeSitemap() {
+  const today = new Date().toISOString().slice(0, 10);
+  const urls = routes
+    .map((r) => {
+      const priority = r.path === '' ? '1.0' : '0.8';
+      return `  <url>\n    <loc>${routeUrl(r)}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+    })
+    .join('\n');
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  fs.writeFileSync(path.join(BUILD_DIR, 'sitemap.xml'), xml, 'utf8');
+  console.log(`Wrote build/sitemap.xml (${routes.length} URLs)`);
+}
+
+// --- Static server with SPA fallback, used only during pre-rendering ---
+function startServer() {
+  const handler = require('serve-handler');
+  const server = http.createServer((req, res) =>
+    handler(req, res, {
+      public: BUILD_DIR,
+      cleanUrls: false,
+      rewrites: [{ source: '**', destination: '/index.html' }]
+    })
+  );
+  return new Promise((resolve) => {
+    server.listen(0, '127.0.0.1', () => resolve({ server, port: server.address().port }));
+  });
+}
+
+async function prerenderAll() {
+  const puppeteer = require('puppeteer');
+  const { server, port } = await startServer();
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+  const results = {};
+  try {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1366, height: 900 });
+    // Prefer light theme to match the deterministic initial React state.
+    await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
+    for (const route of routes) {
+      const url = `http://127.0.0.1:${port}/${route.path}`;
+      await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
+      await page.waitForSelector('#root h1', { timeout: 15000 }).catch(() => {
+        console.warn(`  (no <h1> found on /${route.path})`);
+      });
+      const rootHtml = await page.evaluate(() => {
+        const root = document.getElementById('root');
+        // Never ship scripts inside the pre-rendered markup
+        root.querySelectorAll('script').forEach((s) => s.remove());
+        // Google Charts draws into its container after mount; ship the empty
+        // container only, so hydration matches what React renders.
+        root.querySelectorAll('[id^="reactgooglegraph"]').forEach((el) => { el.innerHTML = ''; });
+        return root.innerHTML;
+      });
+      results[route.path] = rootHtml;
+      console.log(`Pre-rendered /${route.path} (${rootHtml.length} bytes)`);
+    }
+  } finally {
+    await browser.close();
+    server.close();
+  }
+  return results;
+}
+
+async function run() {
   if (!fs.existsSync(TEMPLATE_PATH)) {
     console.error(`Build template not found at ${TEMPLATE_PATH}. Please run "npm run build" first.`);
     process.exit(1);
   }
 
+  validateRoutes();
+
+  // Read the pristine CRA template BEFORE we overwrite build/index.html.
   const baseHtml = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
-  console.log(`Generating static subfolders with custom SEO meta-tags...`);
+  let rendered = {};
+  if (process.env.PRERENDER !== '0') {
+    console.log('Pre-rendering routes in headless Chrome...');
+    rendered = await prerenderAll();
+  } else {
+    console.log('PRERENDER=0 set: skipping pre-render, writing metadata only.');
+  }
 
+  console.log('Writing route HTML with SEO metadata...');
   routes.forEach((route) => {
-    let customHtml = baseHtml;
-
-    // 1. Replace Title
-    customHtml = customHtml.replace(
-      /<title>.*?<\/title>/gis,
-      `<title>${escapeHtml(route.title)}</title>`
-    );
-
-    // 2. Replace Description
-    customHtml = customHtml.replace(
-      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/gis,
-      `<meta name="description" content="${escapeHtml(route.description)}" />`
-    );
-
-    // 3. Replace Keywords
-    customHtml = customHtml.replace(
-      /<meta\s+name="keywords"\s+content="[^"]*"\s*\/?>/gis,
-      `<meta name="keywords" content="${escapeHtml(route.keywords)}" />`
-    );
-
-    // 4. Replace Open Graph Tags
-    customHtml = customHtml.replace(
-      /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/gis,
-      `<meta property="og:title" content="${escapeHtml(route.title)}" />`
-    );
-    customHtml = customHtml.replace(
-      /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/gis,
-      `<meta property="og:description" content="${escapeHtml(route.description)}" />`
-    );
-    customHtml = customHtml.replace(
-      /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/gis,
-      `<meta property="og:url" content="https://tools.71anshuman.com${route.path ? '/' + route.path : ''}" />`
-    );
-
-    // 5. Replace Twitter Tags
-    customHtml = customHtml.replace(
-      /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/gis,
-      `<meta name="twitter:title" content="${escapeHtml(route.title)}" />`
-    );
-    customHtml = customHtml.replace(
-      /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/gis,
-      `<meta name="twitter:description" content="${escapeHtml(route.description)}" />`
-    );
-
-    // Output Directory Setup
-    if (route.path === '') {
-      // For root route, overwrite main index.html
-      fs.writeFileSync(TEMPLATE_PATH, customHtml, 'utf8');
-      console.log(`Updated root metadata in build/index.html`);
-    } else {
-      // For sub-routes, create a directory and write index.html inside it
-      const targetDir = path.join(BUILD_DIR, route.path);
-      if (!fs.existsSync(targetDir)) {
-        fs.mkdirSync(targetDir, { recursive: true });
-      }
-      const targetFilePath = path.join(targetDir, 'index.html');
-      fs.writeFileSync(targetFilePath, customHtml, 'utf8');
-      console.log(`Generated route SEO: build/${route.path}/index.html`);
-    }
+    const html = injectRoot(applyMeta(baseHtml, route), rendered[route.path]);
+    writeRoute(route, html);
   });
 
-  console.log('SEO Generation complete! Ready for deployment.');
+  writeSitemap();
+  console.log('SEO generation complete! Ready for deployment.');
 }
 
-run();
+run().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

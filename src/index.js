@@ -6,14 +6,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+const app = (
   <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
+
+// Routes are pre-rendered at build time (scripts/generate-routes-seo.js), so
+// the root already contains markup in production: hydrate it instead of
+// re-rendering from scratch. In dev (`npm start`) the root is empty.
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrate(app, rootElement);
+} else {
+  ReactDOM.render(app, rootElement);
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

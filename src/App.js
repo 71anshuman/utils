@@ -38,31 +38,39 @@ import JwtDecoder from './components/jwt-decoder';
 import JsonDiff from './components/json-diff';
 
 function App() {
-  const [showSidebar, setShowSidebar] = useState(() => {
-    const saved = localStorage.getItem('devutils_show_sidebar');
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-  
-  // Theme state
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('devutils_theme');
-    if (saved) return saved;
-    // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    return 'light';
-  });
+  // NOTE: Initial state is deliberately deterministic (sidebar open, light theme)
+  // so it matches the pre-rendered HTML produced at build time (see
+  // scripts/generate-routes-seo.js). The user's saved preferences are applied
+  // in an effect right after hydration. The inline script in public/index.html
+  // already sets `data-theme` on <html> before first paint, so there is no
+  // visible flash of the wrong theme.
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [theme, setTheme] = useState('light');
+  const [favorites, setFavorites] = useState([]);
+  const [prefsLoaded, setPrefsLoaded] = useState(false);
 
-  // Starred / Favorites State
-  const [favorites, setFavorites] = useState(() => {
+  useEffect(() => {
     try {
-      const saved = localStorage.getItem('devutils_favorites');
-      return saved ? JSON.parse(saved) : [];
-    } catch (e) {
-      return [];
-    }
-  });
+      const savedSidebar = localStorage.getItem('devutils_show_sidebar');
+      if (savedSidebar !== null) setShowSidebar(JSON.parse(savedSidebar));
+    } catch (e) { /* ignore */ }
+
+    try {
+      const savedTheme = localStorage.getItem('devutils_theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+      }
+    } catch (e) { /* ignore */ }
+
+    try {
+      const savedFavorites = localStorage.getItem('devutils_favorites');
+      if (savedFavorites) setFavorites(JSON.parse(savedFavorites));
+    } catch (e) { /* ignore */ }
+
+    setPrefsLoaded(true);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(prevTheme => {
@@ -83,12 +91,14 @@ function App() {
   };
 
   useEffect(() => {
+    if (!prefsLoaded) return; // inline script in index.html already set it for first paint
     document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+  }, [theme, prefsLoaded]);
 
   useEffect(() => {
+    if (!prefsLoaded) return; // don't persist the default before prefs are read
     localStorage.setItem('devutils_show_sidebar', JSON.stringify(showSidebar));
-  }, [showSidebar]);
+  }, [showSidebar, prefsLoaded]);
 
   return (
     <>
