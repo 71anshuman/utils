@@ -89,10 +89,10 @@ const IpLookup = () => {
         <div className="col-md-8 offset-md-2">
           <div className="card">
             <div className="card-header bg-info text-white">
-              <h4 className="mb-0">
+              <h1 className="h4 mb-0">
                 <i className="fas fa-globe mr-2"></i>
                 IP Address Lookup
-              </h4>
+              </h1>
               <small>Get detailed information about any IP address</small>
             </div>
             <div className="card-body">

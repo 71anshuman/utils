@@ -211,10 +211,10 @@ const AsciiArtGenerator = () => {
         <div className="col-md-10 offset-md-1">
           <div className="card">
             <div className="card-header bg-dark text-white">
-              <h4 className="mb-0">
+              <h1 className="h4 mb-0">
                 <i className="fas fa-font mr-2"></i>
                 ASCII Art Generator
-              </h4>
+              </h1>
               <small>Convert text into ASCII art using different fonts</small>
             </div>
             <div className="card-body">

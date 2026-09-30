@@ -155,10 +155,10 @@ function hello() {
         <div className="col-md-12">
           <div className="card">
             <div className="card-header bg-success text-white">
-              <h4 className="mb-0">
+              <h1 className="h4 mb-0">
                 <i className="fab fa-markdown mr-2"></i>
                 Markdown to HTML Converter
-              </h4>
+              </h1>
               <small>Convert Markdown text to HTML markup</small>
             </div>
             <div className="card-body">

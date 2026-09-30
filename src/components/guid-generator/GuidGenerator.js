@@ -90,10 +90,10 @@ const GuidGenerator = () => {
         <div className="col-md-8 offset-md-2">
           <div className="card">
             <div className="card-header bg-primary text-white">
-              <h4 className="mb-0">
+              <h1 className="h4 mb-0">
                 <i className="fas fa-fingerprint mr-2"></i>
                 GUID/UUID Generator
-              </h4>
+              </h1>
               <small>Generate unique identifiers (GUIDs/UUIDs) in various formats</small>
             </div>
             <div className="card-body">
