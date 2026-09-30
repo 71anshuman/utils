@@ -234,10 +234,10 @@ const CsvToJsonConverter = () => {
         <div className="col-md-12">
           <div className="card">
             <div className="card-header bg-warning text-white">
-              <h4 className="mb-0">
+              <h1 className="h4 mb-0">
                 <i className="fas fa-table mr-2"></i>
                 CSV to JSON Converter
-              </h4>
+              </h1>
               <small>Convert CSV data to JSON format with customizable options</small>
             </div>
             <div className="card-body">
