@@ -139,7 +139,7 @@ const UrlEncoder = () => {
                 <div className="col-md-6">
                   <div className="card">
                     <div className="card-header">
-                      <h5 className="mb-0">URL Encoded</h5>
+                      <h2 className="h5 mb-0">URL Encoded</h2>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
@@ -166,7 +166,7 @@ const UrlEncoder = () => {
                 <div className="col-md-6">
                   <div className="card">
                     <div className="card-header">
-                      <h5 className="mb-0">URL Decoded</h5>
+                      <h2 className="h5 mb-0">URL Decoded</h2>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
@@ -193,7 +193,7 @@ const UrlEncoder = () => {
                 <div className="col-md-6">
                   <div className="card">
                     <div className="card-header">
-                      <h5 className="mb-0">Slug Generator</h5>
+                      <h2 className="h5 mb-0">Slug Generator</h2>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
@@ -222,7 +222,7 @@ const UrlEncoder = () => {
                 <div className="col-md-6">
                   <div className="card">
                     <div className="card-header">
-                      <h5 className="mb-0">Query String Builder</h5>
+                      <h2 className="h5 mb-0">Query String Builder</h2>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
@@ -255,7 +255,7 @@ const UrlEncoder = () => {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header d-flex justify-content-between align-items-center">
-                      <h5 className="mb-0">Query Parameters</h5>
+                      <h2 className="h5 mb-0">Query Parameters</h2>
                       <button className="btn btn-sm btn-primary" onClick={addQueryParam}>
                         Add Parameter
                       </button>
