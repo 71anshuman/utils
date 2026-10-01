@@ -177,20 +177,20 @@ const IpLookup = () => {
               {/* IP Information */}
               {ipInfo && (
                 <div>
-                  <h5 className="mb-3">
+                  <h2 className="h5 mb-3">
                     <i className="fas fa-info-circle mr-2"></i>
                     IP Information for {ipInfo.query}
-                  </h5>
+                  </h2>
                   
                   <div className="row">
                     {/* Location Information */}
                     <div className="col-md-6 mb-3">
                       <div className="card h-100">
                         <div className="card-header bg-light">
-                          <h6 className="mb-0">
+                          <h3 className="h6 mb-0">
                             <i className="fas fa-map-marker-alt mr-1"></i>
                             Location
-                          </h6>
+                          </h3>
                         </div>
                         <div className="card-body">
                           <table className="table table-sm table-borderless mb-0">
@@ -234,10 +234,10 @@ const IpLookup = () => {
                     <div className="col-md-6 mb-3">
                       <div className="card h-100">
                         <div className="card-header bg-light">
-                          <h6 className="mb-0">
+                          <h3 className="h6 mb-0">
                             <i className="fas fa-network-wired mr-1"></i>
                             Network
-                          </h6>
+                          </h3>
                         </div>
                         <div className="card-body">
                           <table className="table table-sm table-borderless mb-0">
@@ -267,10 +267,10 @@ const IpLookup = () => {
                       <div className="col-md-12">
                         <div className="card">
                           <div className="card-header bg-light">
-                            <h6 className="mb-0">
+                            <h3 className="h6 mb-0">
                               <i className="fas fa-crosshairs mr-1"></i>
                               Coordinates
-                            </h6>
+                            </h3>
                           </div>
                           <div className="card-body">
                             <div className="row">
@@ -303,7 +303,7 @@ const IpLookup = () => {
               {/* Disclaimer */}
               <div className="mt-4">
                 <div className="alert alert-warning">
-                  <h6><i className="fas fa-exclamation-triangle mr-1"></i>Disclaimer:</h6>
+                  <h2 className="h6"><i className="fas fa-exclamation-triangle mr-1"></i>Disclaimer:</h2>
                   <ul className="mb-0 small">
                     <li>IP geolocation is approximate and may not be 100% accurate</li>
                     <li>Some information may not be available for all IP addresses</li>
