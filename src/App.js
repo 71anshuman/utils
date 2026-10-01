@@ -36,6 +36,7 @@ import Dashboard from './components/dashboard';
 import DiffViewer from './components/diff-viewer';
 import JwtDecoder from './components/jwt-decoder';
 import JsonDiff from './components/json-diff';
+import ToolInfo from './components/common/ToolInfo';
 
 function App() {
   // NOTE: Initial state is deliberately deterministic (sidebar open, light theme)
@@ -204,6 +205,7 @@ function App() {
               <JsonDiff />
             </Route>
           </Switch>
+          <ToolInfo />
           </div>
     </div>
     </>
