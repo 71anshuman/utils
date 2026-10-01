@@ -373,7 +373,7 @@ export default function JsonDiff() {
                 <div className="card glass-panel border-0 shadow-sm p-3">
                     <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap" style={{ gap: '12px' }}>
                         <div className="d-flex align-items-center flex-wrap" style={{ gap: '8px' }}>
-                            <h3 className="h5 font-weight-bold mb-0 mr-3">Comparison Result</h3>
+                            <h2 className="h5 font-weight-bold mb-0 mr-3">Comparison Result</h2>
                             <span className="badge badge-success">
                                 {diffLines.filter(l => l.type === 'added').length} additions
                             </span>
