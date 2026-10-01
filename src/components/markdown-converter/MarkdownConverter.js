@@ -262,10 +262,10 @@ function hello() {
               <div className="mt-4">
                 <div className="card">
                   <div className="card-header bg-light">
-                    <h6 className="mb-0">
+                    <h2 className="h6 mb-0">
                       <i className="fas fa-question-circle mr-1"></i>
                       Markdown Quick Reference
-                    </h6>
+                    </h2>
                   </div>
                   <div className="card-body">
                     <div className="row">

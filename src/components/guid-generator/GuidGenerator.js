@@ -207,9 +207,9 @@ const GuidGenerator = () => {
               {/* Generated GUIDs */}
               {guids.length > 0 && (
                 <div>
-                  <h5 className="mb-3">
+                  <h2 className="h5 mb-3">
                     Generated GUIDs ({guids.length}):
-                  </h5>
+                  </h2>
                   <div className="guid-list" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     {guids.map((guid, index) => (
                       <div key={index} className="card mb-2">
@@ -241,7 +241,7 @@ const GuidGenerator = () => {
               {/* Info */}
               <div className="mt-4">
                 <div className="alert alert-info">
-                  <h6><i className="fas fa-info-circle mr-1"></i>About GUIDs/UUIDs:</h6>
+                  <h3 className="h6"><i className="fas fa-info-circle mr-1"></i>About GUIDs/UUIDs:</h3>
                   <ul className="mb-0 small">
                     <li><strong>GUID:</strong> Globally Unique Identifier (Microsoft term)</li>
                     <li><strong>UUID:</strong> Universally Unique Identifier (RFC standard)</li>
