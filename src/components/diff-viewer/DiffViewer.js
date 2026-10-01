@@ -156,7 +156,7 @@ export default function DiffViewer() {
                 <div className="card glass-panel border-0 shadow-sm p-3">
                     <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                         <div className="d-flex align-items-center mb-2 mb-md-0">
-                            <h3 className="h5 font-weight-bold mb-0 mr-3">Comparison Result</h3>
+                            <h2 className="h5 font-weight-bold mb-0 mr-3">Comparison Result</h2>
                             <span className="badge badge-success mr-2">
                                 {diffLines.filter(l => l.type === 'added').length} additions
                             </span>
