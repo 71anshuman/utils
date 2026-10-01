@@ -89,17 +89,17 @@ export default function SipCalculator({ theme }) {
                             <div className="col-sm-4 mb-3">
                                 <div className="card p-3 h-100" style={{ borderLeft: '4px solid var(--primary-on-light)' }}>
                                     <div className="text-muted small text-uppercase font-weight-bold">Total Invested</div>
-                                    <h3 className="h4 font-weight-bold mt-2 mb-0" style={{ color: 'var(--text-main)' }}>
+                                    <div className="h4 font-weight-bold mt-2 mb-0" style={{ color: 'var(--text-main)' }}>
                                         {numberFormat(meta.investmentAmount)}
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-sm-4 mb-3">
                                 <div className="card p-3 h-100" style={{ borderLeft: '4px solid #a855f7' }}>
                                     <div className="text-muted small text-uppercase font-weight-bold">Est. Returns</div>
-                                    <h3 className="h4 font-weight-bold mt-2 mb-0" style={{ color: '#a855f7' }}>
+                                    <div className="h4 font-weight-bold mt-2 mb-0" style={{ color: '#a855f7' }}>
                                         {numberFormat(meta.interestAmount)}
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-sm-4 mb-3">
@@ -109,9 +109,9 @@ export default function SipCalculator({ theme }) {
                                     borderLeft: '4px solid var(--primary) !important'
                                 }}>
                                     <div className="text-muted small text-uppercase font-weight-bold" style={{ color: 'var(--primary-on-light)' }}>Total Value</div>
-                                    <h3 className="h4 font-weight-bold mt-2 mb-0" style={{ color: 'var(--primary-on-light)' }}>
+                                    <div className="h4 font-weight-bold mt-2 mb-0" style={{ color: 'var(--primary-on-light)' }}>
                                         {numberFormat(meta.finalBalance)}
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
