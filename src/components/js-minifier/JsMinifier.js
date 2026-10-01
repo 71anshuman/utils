@@ -265,7 +265,7 @@ const utils = {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
-                    <h5 className="mb-0">Input JavaScript</h5>
+                    <h2 className="h5 mb-0">Input JavaScript</h2>
                   </div>
                   <div className="card-body">
                     <textarea
@@ -301,7 +301,7 @@ const utils = {
                   <div className="col-md-6">
                     <div className="card">
                       <div className="card-header d-flex justify-content-between align-items-center">
-                        <h5 className="mb-0">Minified JavaScript</h5>
+                        <h2 className="h5 mb-0">Minified JavaScript</h2>
                         <CopyToClipboard text={minifiedJs}>
                           <button 
                             className={`btn btn-sm ${copied.minified ? 'btn-success' : 'btn-outline-primary'}`}
@@ -340,7 +340,7 @@ const utils = {
                   <div className="col-md-6">
                     <div className="card">
                       <div className="card-header d-flex justify-content-between align-items-center">
-                        <h5 className="mb-0">Beautified JavaScript</h5>
+                        <h2 className="h5 mb-0">Beautified JavaScript</h2>
                         <CopyToClipboard text={beautifiedJs}>
                           <button 
                             className={`btn btn-sm ${copied.beautified ? 'btn-success' : 'btn-outline-primary'}`}
@@ -399,12 +399,12 @@ const utils = {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
-                    <h5 className="mb-0">Features</h5>
+                    <h2 className="h5 mb-0">Features</h2>
                   </div>
                   <div className="card-body">
                     <div className="row">
                       <div className="col-md-6">
-                        <h6>Minification:</h6>
+                        <h3 className="h6">Minification:</h3>
                         <ul className="small">
                           <li>Removes comments and unnecessary whitespace</li>
                           <li>Optimizes code for smaller file sizes</li>
@@ -414,7 +414,7 @@ const utils = {
                         </ul>
                       </div>
                       <div className="col-md-6">
-                        <h6>Beautification:</h6>
+                        <h3 className="h6">Beautification:</h3>
                         <ul className="small">
                           <li>Proper indentation and formatting</li>
                           <li>Readable structure for development</li>
