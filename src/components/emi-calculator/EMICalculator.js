@@ -72,33 +72,33 @@ export default function EMICalculator({ theme }) {
                             <div className="col-sm-6 mb-3">
                                 <div className="card p-3 h-100" style={{ borderLeft: '4px solid var(--primary)' }}>
                                     <div className="text-muted small text-uppercase font-weight-bold">Monthly EMI</div>
-                                    <h3 className="h3 font-weight-bold mt-2 mb-0" style={{ color: 'var(--primary)' }}>
+                                    <div className="h3 font-weight-bold mt-2 mb-0" style={{ color: 'var(--primary)' }}>
                                         {numberFormat(meta.emi)}
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-sm-6 mb-3">
                                 <div className="card p-3 h-100" style={{ borderLeft: '4px solid #a855f7' }}>
                                     <div className="text-muted small text-uppercase font-weight-bold">Total Interest</div>
-                                    <h3 className="h3 font-weight-bold mt-2 mb-0" style={{ color: '#a855f7' }}>
+                                    <div className="h3 font-weight-bold mt-2 mb-0" style={{ color: '#a855f7' }}>
                                         {numberFormat(meta.interestAmount)}
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-sm-6 mb-3">
                                 <div className="card p-3 h-100" style={{ borderLeft: '4px solid var(--text-muted)' }}>
                                     <div className="text-muted small text-uppercase font-weight-bold">Principal Loan</div>
-                                    <h3 className="h4 font-weight-bold mt-2 mb-0">
+                                    <div className="h4 font-weight-bold mt-2 mb-0">
                                         {numberFormat(meta.loanAmount)}
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-sm-6 mb-3">
                                 <div className="card p-3 h-100" style={{ borderLeft: '4px solid #10b981' }}>
                                     <div className="text-muted small text-uppercase font-weight-bold">Total Amount Payable</div>
-                                    <h3 className="h4 font-weight-bold mt-2 mb-0" style={{ color: '#10b981' }}>
+                                    <div className="h4 font-weight-bold mt-2 mb-0" style={{ color: '#10b981' }}>
                                         {numberFormat(meta.finalBalance)}
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>

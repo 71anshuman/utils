@@ -32,10 +32,10 @@ const HtmlEntityEncoder = () => {
       '…': '&hellip;',
       '–': '&ndash;',
       '—': '&mdash;',
-      '\u2018': '&lsquo;',
-      '\u2019': '&rsquo;',
-      '\u201C': '&ldquo;',
-      '\u201D': '&rdquo;',
+      '‘': '&lsquo;',
+      '’': '&rsquo;',
+      '“': '&ldquo;',
+      '”': '&rdquo;',
       '«': '&laquo;',
       '»': '&raquo;',
       '°': '&deg;',
@@ -174,7 +174,7 @@ const HtmlEntityEncoder = () => {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
-                    <h5 className="mb-0">Input Text</h5>
+                    <h2 className="h5 mb-0">Input Text</h2>
                   </div>
                   <div className="card-body">
                     <textarea
@@ -195,7 +195,7 @@ const HtmlEntityEncoder = () => {
                 <div className="col-md-6">
                   <div className="card">
                     <div className="card-header d-flex justify-content-between align-items-center">
-                      <h5 className="mb-0">HTML Entities (Encoded)</h5>
+                      <h2 className="h5 mb-0">HTML Entities (Encoded)</h2>
                       <CopyToClipboard text={encodedText}>
                         <button 
                           className={`btn btn-sm ${copied.encoded ? 'btn-success' : 'btn-outline-primary'}`}
@@ -224,7 +224,7 @@ const HtmlEntityEncoder = () => {
                 <div className="col-md-6">
                   <div className="card">
                     <div className="card-header d-flex justify-content-between align-items-center">
-                      <h5 className="mb-0">Decoded Text</h5>
+                      <h2 className="h5 mb-0">Decoded Text</h2>
                       <CopyToClipboard text={decodedText}>
                         <button 
                           className={`btn btn-sm ${copied.decoded ? 'btn-success' : 'btn-outline-primary'}`}
@@ -257,7 +257,7 @@ const HtmlEntityEncoder = () => {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
-                    <h5 className="mb-0">Common HTML Entities Reference</h5>
+                    <h2 className="h5 mb-0">Common HTML Entities Reference</h2>
                   </div>
                   <div className="card-body">
                     <div className="row">
@@ -288,12 +288,12 @@ const HtmlEntityEncoder = () => {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
-                    <h5 className="mb-0">Features & Use Cases</h5>
+                    <h2 className="h5 mb-0">Features & Use Cases</h2>
                   </div>
                   <div className="card-body">
                     <div className="row">
                       <div className="col-md-6">
-                        <h6>Encoding (Special Characters → HTML Entities):</h6>
+                        <h3 className="h6">Encoding (Special Characters → HTML Entities):</h3>
                         <ul className="small">
                           <li>Prevent XSS attacks in web applications</li>
                           <li>Display special characters safely in HTML</li>
@@ -302,7 +302,7 @@ const HtmlEntityEncoder = () => {
                         </ul>
                       </div>
                       <div className="col-md-6">
-                        <h6>Decoding (HTML Entities → Special Characters):</h6>
+                        <h3 className="h6">Decoding (HTML Entities → Special Characters):</h3>
                         <ul className="small">
                           <li>Convert HTML entities back to readable text</li>
                           <li>Process scraped web content</li>
@@ -313,7 +313,7 @@ const HtmlEntityEncoder = () => {
                     </div>
                     <div className="row mt-3">
                       <div className="col-12">
-                        <h6>Supported Entities:</h6>
+                        <h3 className="h6">Supported Entities:</h3>
                         <p className="small text-muted">
                           Basic HTML entities (&amp;, &lt;, &gt;, &quot;, &#39;), 
                           Currency symbols (€, £, ¥, ¢), 

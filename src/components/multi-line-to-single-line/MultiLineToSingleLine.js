@@ -14,7 +14,7 @@ export default function MultiLineToSingleLine() {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8">
-                            <h1 className="display-6">Multi Line To Single Line text conveter</h1>
+                            <h1 className="display-6">Multi Line To Single Line text converter</h1>
                             <p className="lead">You can convert multiliner text to single line.</p>
                         </div>
                     </div>

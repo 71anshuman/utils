@@ -160,7 +160,7 @@ const ImageCompressor = () => {
                 >
                   <div className="card-body text-center py-5">
                     <i className="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
-                    <h5>Drop your image here or click to select</h5>
+                    <h2 className="h5">Drop your image here or click to select</h2>
                     <p className="text-muted">Supports: JPG, PNG, WebP, GIF</p>
                     <input
                       ref={fileInputRef}
@@ -185,7 +185,7 @@ const ImageCompressor = () => {
                   <div className="col-md-6">
                     <div className="card">
                       <div className="card-header">
-                        <h5 className="mb-0">Compression Settings</h5>
+                        <h2 className="h5 mb-0">Compression Settings</h2>
                       </div>
                       <div className="card-body">
                         <div className="form-group">
@@ -219,7 +219,7 @@ const ImageCompressor = () => {
                   <div className="col-md-6">
                     <div className="card">
                       <div className="card-header">
-                        <h5 className="mb-0">Resize Options</h5>
+                        <h2 className="h5 mb-0">Resize Options</h2>
                       </div>
                       <div className="card-body">
                         <div className="form-row">
@@ -272,7 +272,7 @@ const ImageCompressor = () => {
                   <div className="col-md-6">
                     <div className="card">
                       <div className="card-header">
-                        <h5 className="mb-0">Original Image</h5>
+                        <h2 className="h5 mb-0">Original Image</h2>
                       </div>
                       <div className="card-body text-center">
                         <img
@@ -292,7 +292,7 @@ const ImageCompressor = () => {
                   <div className="col-md-6">
                     <div className="card">
                       <div className="card-header">
-                        <h5 className="mb-0">Compressed Image</h5>
+                        <h2 className="h5 mb-0">Compressed Image</h2>
                       </div>
                       <div className="card-body text-center">
                         {compressedImage ? (

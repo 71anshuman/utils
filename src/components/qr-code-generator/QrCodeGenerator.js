@@ -94,7 +94,7 @@ const QrCodeGenerator = () => {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
-                      <h5 className="mb-0">Generated QR Code</h5>
+                      <h2 className="h5 mb-0">Generated QR Code</h2>
                     </div>
                     <div className="card-body text-center">
                       <div ref={qrRef} className="mb-3">

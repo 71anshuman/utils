@@ -183,14 +183,14 @@ const TextCaseConverter = () => {
             {Object.keys(results).length > 0 && (
               <div className="row">
                 <div className="col-12">
-                  <h5 className="mb-3">Converted Text</h5>
+                  <h2 className="h5 mb-3">Converted Text</h2>
                   <div className="row">
                     {caseTypes.map(({ key, label, description }) => (
                       <div key={key} className="col-md-4 mb-3">
                         <div className="card">
                           <div className="card-header d-flex justify-content-between align-items-center">
                             <div>
-                              <h6 className="mb-0">{label}</h6>
+                              <h3 className="h6 mb-0">{label}</h3>
                               <small className="text-muted">{description}</small>
                             </div>
                             <CopyToClipboard text={results[key] || ''}>

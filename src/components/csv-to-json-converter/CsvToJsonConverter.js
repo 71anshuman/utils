@@ -494,7 +494,7 @@ const CsvToJsonConverter = () => {
               {/* Info */}
               <div className="mt-4">
                 <div className="alert alert-info">
-                  <h6><i className="fas fa-info-circle mr-1"></i>CSV Parsing Features:</h6>
+                  <h2 className="h6"><i className="fas fa-info-circle mr-1"></i>CSV Parsing Features:</h2>
                   <ul className="mb-0 small">
                     <li>Supports quoted fields with commas and newlines</li>
                     <li>Handles escaped quotes ("") within quoted fields</li>

@@ -138,7 +138,7 @@ const TimestampConverter = () => {
               <div className="col-12">
                 <div className="card mb-4">
                   <div className="card-header">
-                    <h6 className="mb-0">Current Time</h6>
+                    <h2 className="h6 mb-0">Current Time</h2>
                   </div>
                   <div className="card-body">
                     <div className="row">
@@ -191,7 +191,7 @@ const TimestampConverter = () => {
               <div className="col-md-6">
                 <div className="card">
                   <div className="card-header">
-                    <h6 className="mb-0">Timestamp to Date</h6>
+                    <h2 className="h6 mb-0">Timestamp to Date</h2>
                   </div>
                   <div className="card-body">
                     <div className="form-group">
@@ -210,7 +210,7 @@ const TimestampConverter = () => {
 
                     {convertedDate && (
                       <div className="mt-3">
-                        <h6>Converted Date Formats</h6>
+                        <h2 className="h6">Converted Date Formats</h2>
                         {commonFormats.map((format, index) => (
                           <div key={index} className="mb-2">
                             <div className="input-group input-group-sm">
@@ -248,7 +248,7 @@ const TimestampConverter = () => {
               <div className="col-md-6">
                 <div className="card">
                   <div className="card-header">
-                    <h6 className="mb-0">Date to Timestamp</h6>
+                    <h2 className="h6 mb-0">Date to Timestamp</h2>
                   </div>
                   <div className="card-body">
                     <div className="form-group">
@@ -263,7 +263,7 @@ const TimestampConverter = () => {
 
                     {timestamp && (
                       <div className="mt-3">
-                        <h6>Generated Timestamps</h6>
+                        <h2 className="h6">Generated Timestamps</h2>
                         
                         <div className="form-group">
                           <label>Unix Timestamp (seconds)</label>
@@ -343,7 +343,7 @@ const TimestampConverter = () => {
             <div className="row mt-4">
               <div className="col-12">
                 <div className="alert alert-info">
-                  <h6><i className="fas fa-info-circle mr-2"></i>Unix Timestamp Information</h6>
+                  <h2 className="h6"><i className="fas fa-info-circle mr-2"></i>Unix Timestamp Information</h2>
                   <ul className="mb-0 small">
                     <li><strong>Unix Timestamp:</strong> Number of seconds that have elapsed since January 1, 1970 UTC</li>
                     <li><strong>Seconds vs Milliseconds:</strong> JavaScript uses milliseconds, while most Unix systems use seconds</li>

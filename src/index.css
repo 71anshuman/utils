@@ -577,3 +577,12 @@ textarea:disabled.form-control {
   color: var(--text-muted) !important;
   border-color: var(--border-color) !important;
 }
+
+/* Static help content under each tool (ToolInfo) */
+.tool-info {
+  max-width: 1100px;
+}
+.tool-info p,
+.tool-info li {
+  line-height: 1.7;
+}

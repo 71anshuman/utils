@@ -175,7 +175,7 @@ const ColorPicker = () => {
               <div className="col-md-4">
                 <div className="card">
                   <div className="card-header">
-                    <h5 className="mb-0">Color Picker</h5>
+                    <h2 className="h5 mb-0">Color Picker</h2>
                   </div>
                   <div className="card-body">
                     <div className="form-group">
@@ -332,11 +332,11 @@ const ColorPicker = () => {
               <div className="col-md-4">
                 <div className="card">
                   <div className="card-header">
-                    <h5 className="mb-0">Accessibility Check</h5>
+                    <h2 className="h5 mb-0">Accessibility Check</h2>
                   </div>
                   <div className="card-body">
                     <div className="mb-3">
-                      <h6>Contrast with White</h6>
+                      <h3 className="h6">Contrast with White</h3>
                       <div className="d-flex align-items-center justify-content-between p-2 mb-2" style={{ backgroundColor: color, color: 'white' }}>
                         <span>Sample Text</span>
                         <span>{contrastWithWhite.toFixed(2)}:1</span>
@@ -347,7 +347,7 @@ const ColorPicker = () => {
                     </div>
 
                     <div className="mb-3">
-                      <h6>Contrast with Black</h6>
+                      <h3 className="h6">Contrast with Black</h3>
                       <div className="d-flex align-items-center justify-content-between p-2 mb-2" style={{ backgroundColor: color, color: 'black' }}>
                         <span>Sample Text</span>
                         <span>{contrastWithBlack.toFixed(2)}:1</span>
@@ -364,7 +364,7 @@ const ColorPicker = () => {
               <div className="col-md-4">
                 <div className="card">
                   <div className="card-header">
-                    <h5 className="mb-0">Color Values</h5>
+                    <h2 className="h5 mb-0">Color Values</h2>
                   </div>
                   <div className="card-body">
                     <div className="form-group">
@@ -452,7 +452,7 @@ const ColorPicker = () => {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
-                    <h5 className="mb-0">Color Palette Generator</h5>
+                    <h2 className="h5 mb-0">Color Palette Generator</h2>
                   </div>
                   <div className="card-body">
                     <div className="btn-group mb-3" role="group">

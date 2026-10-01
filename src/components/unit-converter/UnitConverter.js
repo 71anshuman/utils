@@ -269,18 +269,18 @@ const UnitConverter = () => {
               {/* Conversion Result Display */}
               {outputValue && outputValue !== 'Invalid input' && inputValue && (
                 <div className="alert alert-success">
-                  <h6 className="mb-0">
+                  <h2 className="h6 mb-0">
                     <i className="fas fa-check-circle mr-2"></i>
                     <strong>{inputValue} {currentUnits[fromUnit].symbol}</strong> = 
                     <strong> {outputValue} {currentUnits[toUnit].symbol}</strong>
-                  </h6>
+                  </h2>
                 </div>
               )}
 
               {/* Info */}
               <div className="mt-4">
                 <div className="alert alert-info">
-                  <h6><i className="fas fa-info-circle mr-1"></i>Conversion Features:</h6>
+                  <h2 className="h6"><i className="fas fa-info-circle mr-1"></i>Conversion Features:</h2>
                   <ul className="mb-0 small">
                     <li>Support for length, weight, and temperature conversions</li>
                     <li>High precision calculations with automatic rounding</li>
