@@ -29,6 +29,57 @@ const IpLookup = () => {
     return ipv4Regex.test(ip) || ipv6Regex.test(ip);
   };
 
+  // Normalise provider responses to the shape the UI renders.
+  const fetchIpInfo = async (ip) => {
+    // Primary: ipwho.is (free, HTTPS, CORS)
+    try {
+      const res = await fetch(`https://ipwho.is/${ip}`);
+      const data = await res.json();
+      if (data.success) {
+        return {
+          query: data.ip,
+          country: data.country,
+          countryCode: data.country_code,
+          regionName: data.region,
+          city: data.city,
+          zip: data.postal,
+          lat: data.latitude,
+          lon: data.longitude,
+          timezone: data.timezone && data.timezone.id,
+          isp: data.connection && data.connection.isp,
+          org: data.connection && data.connection.org,
+          as: data.connection && data.connection.asn ? `AS${data.connection.asn}` : ''
+        };
+      }
+      if (data.message && /reserved|private|invalid/i.test(data.message)) {
+        throw new Error(data.message);
+      }
+    } catch (e) {
+      if (e.message && /reserved|private|invalid/i.test(e.message)) throw e;
+      // fall through to the secondary provider
+    }
+
+    // Fallback: ipapi.co (free, HTTPS, CORS, rate limited)
+    const res = await fetch(`https://ipapi.co/${ip}/json/`);
+    if (!res.ok) throw new Error('Lookup service is temporarily unavailable. Please try again later.');
+    const data = await res.json();
+    if (data.error) throw new Error(data.reason || 'Failed to lookup IP address');
+    return {
+      query: data.ip,
+      country: data.country_name,
+      countryCode: data.country_code,
+      regionName: data.region,
+      city: data.city,
+      zip: data.postal,
+      lat: data.latitude,
+      lon: data.longitude,
+      timezone: data.timezone,
+      isp: data.org,
+      org: data.org,
+      as: data.asn
+    };
+  };
+
   const lookupIp = async (ip = ipAddress) => {
     if (!ip) {
       setError('Please enter an IP address');
@@ -45,17 +96,17 @@ const IpLookup = () => {
     setIpInfo(null);
 
     try {
-      // Using ip-api.com (free tier allows 1000 requests per month)
-      const response = await fetch(`http://ip-api.com/json/${ip}?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query`);
-      const data = await response.json();
-
-      if (data.status === 'success') {
-        setIpInfo(data);
+      // ip-api.com only offers HTTP on its free tier, which browsers block as
+      // mixed content on an HTTPS site. ipwho.is is free, HTTPS and CORS-enabled;
+      // ipapi.co is used as a fallback.
+      const info = await fetchIpInfo(ip);
+      if (info) {
+        setIpInfo(info);
       } else {
-        setError(data.message || 'Failed to lookup IP address');
+        setError('No information found for this IP address');
       }
     } catch (err) {
-      setError('Network error. Please check your connection and try again.');
+      setError(err.message || 'Lookup failed. Please try again later.');
     } finally {
       setLoading(false);
     }
