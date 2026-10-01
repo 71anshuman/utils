@@ -184,7 +184,7 @@ const LoremGenerator = () => {
               <div className="col-md-4">
                 <div className="card">
                   <div className="card-header">
-                    <h6 className="mb-0">Generation Options</h6>
+                    <h2 className="h6 mb-0">Generation Options</h2>
                   </div>
                   <div className="card-body">
                     <div className="form-group">
@@ -255,7 +255,7 @@ const LoremGenerator = () => {
                 {generatedText && (
                   <div className="card mt-3">
                     <div className="card-header">
-                      <h6 className="mb-0">Statistics</h6>
+                      <h2 className="h6 mb-0">Statistics</h2>
                     </div>
                     <div className="card-body">
                       <small className="d-block">
@@ -280,7 +280,7 @@ const LoremGenerator = () => {
                   <>
                     <div className="card">
                       <div className="card-header d-flex justify-content-between align-items-center">
-                        <h6 className="mb-0">Generated Text</h6>
+                        <h2 className="h6 mb-0">Generated Text</h2>
                         <CopyToClipboard text={generatedText}>
                           <button 
                             className={`btn ${copied ? 'btn-success' : 'btn-outline-primary'}`}
@@ -303,7 +303,7 @@ const LoremGenerator = () => {
 
                     <div className="card mt-3">
                       <div className="card-header d-flex justify-content-between align-items-center">
-                        <h6 className="mb-0">HTML Format</h6>
+                        <h2 className="h6 mb-0">HTML Format</h2>
                         <CopyToClipboard text={generateHTML()}>
                           <button 
                             className="btn btn-outline-secondary"
@@ -337,7 +337,7 @@ const LoremGenerator = () => {
             <div className="row mt-4">
               <div className="col-12">
                 <div className="alert alert-info">
-                  <h6><i className="fas fa-info-circle mr-2"></i>About Lorem Ipsum</h6>
+                  <h2 className="h6"><i className="fas fa-info-circle mr-2"></i>About Lorem Ipsum</h2>
                   <p className="mb-0 small">
                     Lorem ipsum is simply dummy text used in the printing and typesetting industry. 
                     It has been the industry's standard dummy text since the 1500s, when an unknown 
