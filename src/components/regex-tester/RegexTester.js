@@ -270,7 +270,7 @@ const RegexTester = () => {
               <div className="col-md-4">
                 <div className="card">
                   <div className="card-header">
-                    <h6 className="mb-0">Common Patterns</h6>
+                    <h2 className="h6 mb-0">Common Patterns</h2>
                   </div>
                   <div className="card-body" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     {commonPatterns.map((commonPattern, index) => (
@@ -294,7 +294,7 @@ const RegexTester = () => {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header d-flex justify-content-between align-items-center">
-                      <h6 className="mb-0">Results ({matches.length} match{matches.length !== 1 ? 'es' : ''})</h6>
+                      <h2 className="h6 mb-0">Results ({matches.length} match{matches.length !== 1 ? 'es' : ''})</h2>
                       {matches.length > 0 && (
                         <span className="badge badge-success">{matches.length} found</span>
                       )}
@@ -302,7 +302,7 @@ const RegexTester = () => {
                     <div className="card-body">
                       {testText && (
                         <div className="mb-3">
-                          <h6>Highlighted Text</h6>
+                          <h2 className="h6">Highlighted Text</h2>
                           <div 
                             className="border p-3 bg-light"
                             style={{ 
@@ -319,7 +319,7 @@ const RegexTester = () => {
 
                       {matches.length > 0 && (
                         <div>
-                          <h6>Match Details</h6>
+                          <h2 className="h6">Match Details</h2>
                           <div className="table-responsive">
                             <table className="table table-sm table-striped">
                               <thead>
@@ -393,7 +393,7 @@ const RegexTester = () => {
             <div className="row mt-4">
               <div className="col-12">
                 <div className="alert alert-info">
-                  <h6><i className="fas fa-info-circle mr-2"></i>Regex Flags Reference</h6>
+                  <h2 className="h6"><i className="fas fa-info-circle mr-2"></i>Regex Flags Reference</h2>
                   <div className="row">
                     <div className="col-md-6">
                       <ul className="mb-0 small">
