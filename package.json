@@ -35,7 +35,7 @@
     "lint:fix": "eslint ./src --ext .js,.jsx --fix",
     "start": "NODE_OPTIONS=\"--openssl-legacy-provider\" react-scripts start",
     "build": "NODE_OPTIONS=\"--openssl-legacy-provider\" react-scripts build",
-    "postbuild": "node scripts/generate-routes-seo.js",
+    "postbuild": "node scripts/generate-icons.js && node scripts/generate-routes-seo.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
