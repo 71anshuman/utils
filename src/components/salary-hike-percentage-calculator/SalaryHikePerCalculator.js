@@ -103,7 +103,7 @@ export default function SalaryHikePerCalculator() {
                         {/* Control panel */}
                         <div className="col-lg-6 mb-4">
                             <div className="card p-4 h-100">
-                                <h3 className="h5 font-weight-bold mb-4">Salary Parameters</h3>
+                                <h2 className="h5 font-weight-bold mb-4">Salary Parameters</h2>
                                 
                                 {/* Current Salary */}
                                 <div className="form-group mb-4">
@@ -171,14 +171,14 @@ export default function SalaryHikePerCalculator() {
                         {/* Output visual dashboard */}
                         <div className="col-lg-6 mb-4">
                             <div className="card p-4 h-100 d-flex flex-column justify-content-between">
-                                <h3 className="h5 font-weight-bold mb-4">Increment Projections</h3>
+                                <h2 className="h5 font-weight-bold mb-4">Increment Projections</h2>
                                 
                                 <div className="d-flex flex-column" style={{ gap: '24px' }}>
                                     <div className="p-3 border rounded" style={{ borderLeft: '4px solid #a855f7 !important', background: 'var(--bg-card)' }}>
                                         <div className="text-muted small text-uppercase font-weight-bold">Hike Amount</div>
-                                        <h2 className="h3 font-weight-bold mt-2 mb-0" style={{ color: '#a855f7' }}>
+                                        <div className="h3 font-weight-bold mt-2 mb-0" style={{ color: '#a855f7' }}>
                                             {numberFormat(calculatedHikeAmount)}
-                                        </h2>
+                                        </div>
                                     </div>
                                     
                                     <div className="p-4 border rounded" style={{ 
@@ -187,9 +187,9 @@ export default function SalaryHikePerCalculator() {
                                         borderColor: 'var(--primary) !important'
                                     }}>
                                         <div className="text-muted small text-uppercase font-weight-bold" style={{ color: 'var(--primary-on-light)' }}>Projected New Salary</div>
-                                        <h2 className="display-6 font-weight-bold mt-2 mb-0" style={{ color: 'var(--primary-on-light)' }}>
+                                        <div className="display-6 font-weight-bold mt-2 mb-0" style={{ color: 'var(--primary-on-light)' }}>
                                             {numberFormat(calculatedNewSalary)}
-                                        </h2>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="mt-4 text-muted small text-center">
@@ -204,7 +204,7 @@ export default function SalaryHikePerCalculator() {
                         {/* Control panel */}
                         <div className="col-lg-6 mb-4">
                             <div className="card p-4 h-100">
-                                <h3 className="h5 font-weight-bold mb-4">Salary Details</h3>
+                                <h2 className="h5 font-weight-bold mb-4">Salary Details</h2>
                                 
                                 {/* Current Salary */}
                                 <div className="form-group mb-4">
@@ -271,14 +271,14 @@ export default function SalaryHikePerCalculator() {
                         {/* Output visual dashboard */}
                         <div className="col-lg-6 mb-4">
                             <div className="card p-4 h-100 d-flex flex-column justify-content-between">
-                                <h3 className="h5 font-weight-bold mb-4">Hike Evaluation</h3>
+                                <h2 className="h5 font-weight-bold mb-4">Hike Evaluation</h2>
                                 
                                 <div className="d-flex flex-column" style={{ gap: '24px' }}>
                                     <div className="p-3 border rounded" style={{ borderLeft: '4px solid #a855f7 !important', background: 'var(--bg-card)' }}>
                                         <div className="text-muted small text-uppercase font-weight-bold">Absolute Increment</div>
-                                        <h2 className="h3 font-weight-bold mt-2 mb-0" style={{ color: '#a855f7' }}>
+                                        <div className="h3 font-weight-bold mt-2 mb-0" style={{ color: '#a855f7' }}>
                                             {tab2HikeAmount >= 0 ? numberFormat(tab2HikeAmount) : `-${numberFormat(Math.abs(tab2HikeAmount))}`}
-                                        </h2>
+                                        </div>
                                     </div>
                                     
                                     <div className="p-4 border rounded" style={{ 
@@ -287,9 +287,9 @@ export default function SalaryHikePerCalculator() {
                                         borderColor: 'var(--primary) !important'
                                     }}>
                                         <div className="text-muted small text-uppercase font-weight-bold" style={{ color: 'var(--primary-on-light)' }}>Hike Percentage</div>
-                                        <h2 className="display-6 font-weight-bold mt-2 mb-0" style={{ color: 'var(--primary-on-light)' }}>
+                                        <div className="display-6 font-weight-bold mt-2 mb-0" style={{ color: 'var(--primary-on-light)' }}>
                                             {calculatedHikePercent}%
-                                        </h2>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="mt-4 text-muted small text-center">
