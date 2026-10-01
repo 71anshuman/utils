@@ -134,7 +134,7 @@ const HashGenerator = () => {
               <div className="col-md-6">
                 <div className="card">
                   <div className="card-header">
-                    <h6 className="mb-0">Text Hash Generator</h6>
+                    <h2 className="h6 mb-0">Text Hash Generator</h2>
                   </div>
                   <div className="card-body">
                     <div className="form-group">
@@ -160,7 +160,7 @@ const HashGenerator = () => {
               <div className="col-md-6">
                 <div className="card">
                   <div className="card-header">
-                    <h6 className="mb-0">File Hash Generator</h6>
+                    <h2 className="h6 mb-0">File Hash Generator</h2>
                   </div>
                   <div className="card-body">
                     <div className="form-group">
@@ -189,11 +189,11 @@ const HashGenerator = () => {
             {(Object.keys(hashes).length > 0 || Object.keys(fileHashes).length > 0) && (
               <div className="row mt-4">
                 <div className="col-12">
-                  <h5 className="mb-3">Generated Hashes</h5>
+                  <h3 className="h5 mb-3">Generated Hashes</h3>
                   
                   {Object.keys(hashes).length > 0 && (
                     <div className="mb-4">
-                      <h6 className="text-muted">Text Hashes</h6>
+                      <h4 className="h6 text-muted">Text Hashes</h4>
                       {hashTypes.map(({ key, label, description, color }) => (
                         hashes[key] && (
                           <div key={key} className="card mb-2">
@@ -228,7 +228,7 @@ const HashGenerator = () => {
 
                   {Object.keys(fileHashes).length > 0 && (
                     <div className="mb-4">
-                      <h6 className="text-muted">File Hashes</h6>
+                      <h4 className="h6 text-muted">File Hashes</h4>
                       {hashTypes.map(({ key, label, description, color }) => (
                         fileHashes[key] && (
                           <div key={key} className="card mb-2">
@@ -267,7 +267,7 @@ const HashGenerator = () => {
             <div className="row mt-4">
               <div className="col-12">
                 <div className="alert alert-info">
-                  <h6><i className="fas fa-info-circle mr-2"></i>Hash Algorithm Information</h6>
+                  <h2 className="h6"><i className="fas fa-info-circle mr-2"></i>Hash Algorithm Information</h2>
                   <ul className="mb-0 small">
                     <li><strong>MD5 & SHA-1:</strong> Deprecated for security purposes, use only for non-cryptographic purposes</li>
                     <li><strong>SHA-256:</strong> Widely used and recommended for most applications</li>
