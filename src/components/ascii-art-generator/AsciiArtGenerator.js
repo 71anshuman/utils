@@ -292,10 +292,10 @@ const AsciiArtGenerator = () => {
               {(loading || asciiArt) && (
                 <div className="mb-4">
                   <div className="d-flex justify-content-between align-items-center mb-2">
-                    <h5 className="mb-0">
+                    <h2 className="h5 mb-0">
                       <i className="fas fa-palette mr-2"></i>
                       ASCII Art Output:
-                    </h5>
+                    </h2>
                     {asciiArt && !loading && (
                       <CopyToClipboard text={asciiArt} onCopy={handleCopy}>
                         <button className="btn btn-success">
@@ -343,10 +343,10 @@ const AsciiArtGenerator = () => {
                 <div className="col-md-12">
                   <div className="card">
                     <div className="card-header bg-light">
-                      <h6 className="mb-0">
+                      <h2 className="h6 mb-0">
                         <i className="fas fa-eye mr-1"></i>
                         Font Preview ({fonts[font].name})
-                      </h6>
+                      </h2>
                     </div>
                     <div className="card-body bg-dark text-white">
                       <pre 
@@ -392,7 +392,7 @@ const AsciiArtGenerator = () => {
               {/* Info */}
               <div className="mt-4">
                 <div className="alert alert-info">
-                  <h6><i className="fas fa-info-circle mr-1"></i>Tips:</h6>
+                  <h2 className="h6"><i className="fas fa-info-circle mr-1"></i>Tips:</h2>
                   <ul className="mb-0 small">
                     <li>Keep text short (max 20 characters) for best results</li>
                     <li>Only letters, numbers, and spaces are supported</li>
